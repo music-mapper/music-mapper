@@ -6,13 +6,15 @@
  * For more information, read
  * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
  */
+
 var express = require('express'); // Express web server framework
+require("../secrets");
 var request = require('request'); // "Request" library
 var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var client_id = 'e14255b2d5d04b8ab2925cfe67cff691'; // Your client id
-var client_secret = '91d686e850c847f88a32d71a7c476fa8'; // Your secret
+var client_secret = process.env.client_secret; // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 /**
  * Generates a random string containing numbers and letters
@@ -144,11 +146,16 @@ app.get('/refresh_token', function(req, res) {
 });
 
 
-request('https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=jsonp&callback=callback&q_track=Thriller&q_artist=Michael%20Jackson&apikey=491f38221f61d0947df5cd48aa9473cd', function (error, response, body) {
- console.log('error:', error); // Print the error if one occurred
- console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
- console.log('body:', body); // Print the HTML for the Google homepage.
-});
+request(
+  `https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=jsonp&callback=callback&q_track=Thriller&q_artist=Michael%20Jackson&apikey=${
+    process.env.api_key
+  }`,
+  function(error, response, body) {
+    console.log("error:", error); // Print the error if one occurred
+    console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
+    console.log("body:", body); // Print the HTML for the Google homepage.
+  }
+);
 
 
 console.log('Listening on 8888');
