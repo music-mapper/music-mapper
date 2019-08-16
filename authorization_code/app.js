@@ -6,17 +6,14 @@
  * For more information, read
  * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
  */
-
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
 var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
-
-var client_id = 'CLIENT_ID'; // Your client id
-var client_secret = 'CLIENT_SECRET'; // Your secret
-var redirect_uri = 'REDIRECT_URI'; // Your redirect uri
-
+var client_id = 'e14255b2d5d04b8ab2925cfe67cff691'; // Your client id
+var client_secret = '91d686e850c847f88a32d71a7c476fa8'; // Your secret
+var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
@@ -25,28 +22,21 @@ var redirect_uri = 'REDIRECT_URI'; // Your redirect uri
 var generateRandomString = function(length) {
   var text = '';
   var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
   for (var i = 0; i < length; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   return text;
 };
-
 var stateKey = 'spotify_auth_state';
-
 var app = express();
-
 app.use(express.static(__dirname + '/public'))
    .use(cors())
    .use(cookieParser());
-
 app.get('/login', function(req, res) {
-
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
-
   // your application requests authorization
-  var scope = 'user-read-private user-read-email';
+  var scope = 'user-library-read user-follow-read playlist-read-private';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
@@ -56,16 +46,12 @@ app.get('/login', function(req, res) {
       state: state
     }));
 });
-
 app.get('/callback', function(req, res) {
-
   // your application requests refresh and access tokens
   // after checking the state parameter
-
   var code = req.query.code || null;
   var state = req.query.state || null;
   var storedState = req.cookies ? req.cookies[stateKey] : null;
-
   if (state === null || state !== storedState) {
     res.redirect('/#' +
       querystring.stringify({
@@ -85,25 +71,32 @@ app.get('/callback', function(req, res) {
       },
       json: true
     };
-
     request.post(authOptions, function(error, response, body) {
       if (!error && response.statusCode === 200) {
-
         var access_token = body.access_token,
             refresh_token = body.refresh_token;
-
         var options = {
-          url: 'https://api.spotify.com/v1/me',
+          url: 'https://api.spotify.com/v1/me/albums',
           headers: { 'Authorization': 'Bearer ' + access_token },
           json: true
         };
-
         // use the access token to access the Spotify Web API
         request.get(options, function(error, response, body) {
-          console.log(body);
+          console.log('ALBUM NAME: ', body.items[0].album.name);
         });
-
-        // we can also pass the token to the browser to make requests from there
+        options.url = 'https://api.spotify.com/v1/me/tracks'
+        request.get(options, function(error, response, body) {
+          console.log('TRACKS (ONE): ', body.items[0].track.name);
+        });
+        options.url = 'https://api.spotify.com/v1/me/following?type=artist'
+        request.get(options, function(error, response, body) {
+          console.log('ARTISTS (GENRE): ', body.artists.items[0].genres);
+        });
+        options.url = 'https://api.spotify.com/v1/me/playlists'
+        request.get(options, function(error, response, body) {
+          console.log('PLAYLISTS: ', body);
+        });
+        //we can also pass the token to the browser to make requests from there
         res.redirect('/#' +
           querystring.stringify({
             access_token: access_token,
@@ -118,9 +111,7 @@ app.get('/callback', function(req, res) {
     });
   }
 });
-
 app.get('/refresh_token', function(req, res) {
-
   // requesting access token from refresh token
   var refresh_token = req.query.refresh_token;
   var authOptions = {
@@ -132,7 +123,6 @@ app.get('/refresh_token', function(req, res) {
     },
     json: true
   };
-
   request.post(authOptions, function(error, response, body) {
     if (!error && response.statusCode === 200) {
       var access_token = body.access_token;
@@ -142,6 +132,14 @@ app.get('/refresh_token', function(req, res) {
     }
   });
 });
+
+
+request('https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=jsonp&callback=callback&q_track=Thriller&q_artist=Michael%20Jackson&apikey=491f38221f61d0947df5cd48aa9473cd', function (error, response, body) {
+ console.log('error:', error); // Print the error if one occurred
+ console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+ console.log('body:', body); // Print the HTML for the Google homepage.
+});
+
 
 console.log('Listening on 8888');
 app.listen(8888);
