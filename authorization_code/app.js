@@ -86,8 +86,16 @@ app.get('/callback', function(req, res) {
         });
         options.url = 'https://api.spotify.com/v1/me/tracks'
         request.get(options, function(error, response, body) {
-          console.log('TRACKS (ONE): ', body.items[0].track.name);
+          console.log('TRACK ID: ', body.items);
+          // console.log('TRACKS (ONE): ', body.items[0].track.name);
         });
+
+
+        options.url = 'https://api.spotify.com/v1/audio-features?ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer BQBRT_KVuxlznTa0KQErxyDKeFP1dm9HtO9J6DPOX_SQCgfQvlptWWY5EHJPZwx6YTS703rtH1QBN_RW7W-kJZMUvio-cOgY_qO7b9Fr6poKaNgtR7jIBAL4zVWdSYbNTFMCBq0xABdlNJdLWYvCxAk'
+        request.get(options, function(error, response, body) {
+          console.log('AUDIO FEATURES: ', body);
+        });
+
         options.url = 'https://api.spotify.com/v1/me/following?type=artist'
         request.get(options, function(error, response, body) {
           console.log('ARTISTS (GENRE): ', body.artists.items[0].genres);
@@ -96,6 +104,8 @@ app.get('/callback', function(req, res) {
         request.get(options, function(error, response, body) {
           console.log('PLAYLISTS: ', body);
         });
+
+
         //we can also pass the token to the browser to make requests from there
         res.redirect('/#' +
           querystring.stringify({
