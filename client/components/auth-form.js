@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {auth} from '../store'
+// import {auth} from '../store'
 
 /**
  * COMPONENT
@@ -11,25 +11,18 @@ const AuthForm = props => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
+      <div className="container">
+      <div id="login">
+        <h1>Log in below</h1>
+        <button type='submit'><a href="login" className="btn btn-primary btn-login">Log in with Spotify</a></button>
+      </div>
+      <div id="loggedin">
+        <div id="user-profile">
         </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
+        <div id="oauth">
         </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
+      </div>
+    </div>
     </div>
   )
 }
