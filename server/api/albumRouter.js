@@ -1,12 +1,12 @@
 const router = require('express').Router()
 let request = require('request')
-let querystring = require('querystring')
+// let querystring = require('querystring')
 module.exports = router
 
 // this is assuming that "access_token" is available as a global variable!!
 // global.access_token
 
-router.get('/check', function(req, res) {
+router.get('/', function(req, res) {
   console.log(`Access token is ${global.access_token}`)
   let data
   var options = {
