@@ -13,6 +13,8 @@ router.use('/playlist', require('./playlistRouter'))
 
 router.use('/tracks', require('./tracksRouter'))
 
+router.use('/lyrics', require('./lyricsRouter'))
+
 router.use((req, res, next) => {
   const error = new Error('Not Found')
   error.status = 404
