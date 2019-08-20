@@ -1,3 +1,4 @@
+import React from 'react'
 import * as d3 from 'd3'
 
 var dataset = {
@@ -14,7 +15,19 @@ var dataset = {
   ]
 }
 
-// Set the overall diameter for the chart in pixels
+export default class BubbleChart extends React.Component{
+  constructor(props){
+    super(props)
+    this.createBubbleGraph = this.createBubbleGraph.bind(this)
+  }
+  componentDidMount(){
+    this.createBubbleGraph()
+  }
+  componentDidUpdate() {
+    this.createBubbleGraph()
+  }
+  createBubbleGraph(){
+    // Set the overall diameter for the chart in pixels
 var diameter = 600
 // Set a color scale to use when coloring in the different nodes in the chart
 var color = d3.scaleOrdinal(d3.schemeAccent)
@@ -93,3 +106,14 @@ node
   .attr('fill', 'white')
 // Set the overall height of the frame around the chart
 d3.select(self.frameElement).style('height', diameter + 'px')
+
+  }
+  render(){
+    return(
+      <svg ref={node => this.node = node}
+      width={0} height={0}></svg>
+    )
+  }
+}
+
+
