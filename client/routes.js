@@ -4,6 +4,7 @@ import {withRouter, Route, Switch, Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {me} from './store'
+import ReactBubbleChart from './components/react-bubble-chart'
 
 /**
  * COMPONENT
@@ -20,6 +21,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/chart" component={ReactBubbleChart} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
