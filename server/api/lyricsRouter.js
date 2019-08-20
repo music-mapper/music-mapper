@@ -21,7 +21,10 @@ module.exports = router
   //   console.log('ARTISTS GENRE: ', body.artists.items[0].genres)
 
   request(
-    `https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=jsonp&callback=callback&q_track=Thriller&q_artist=Michael%20Jackson&apikey=${
+    // `https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=jsonp&callback=callback&q_track=Thriller&q_artist=Michael%20Jackson&apikey=${
+    //   process.env.api_key
+    // }`,
+    `https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=jsonp&callback=callback&q_track=Despacito%20 (Featuring%20Daddy%20Yankee)&q_artist=Luis%20Fonsi&apikey=${
       process.env.api_key
     }`,
     function(error, response, body) {
