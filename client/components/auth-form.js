@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 // import {auth} from '../store'
 
+
 /**
  * COMPONENT
  */
@@ -16,15 +17,17 @@ const AuthForm = props => {
       <div id="login">
         <h1>Log in below</h1>
         {/* these links don't go anywhere because React is funny with page navigation */}
-        <button type='submit'>
-          <Link to="/auth/spotify/login/" className="btn btn-primary btn-login">
+          <a href="/auth/spotify/login/" className="btn btn-primary btn-login">
+          <button type='submit'>
             Log in with Spotify
-          </Link>
-        </button>
+            </button>
+          </a>
+
 
         {/* <Link className="color link center" to="/api/spotify/login/">
             <img src="https://i.imgur.com/LTMiQWz.png" />
         </Link> */}
+
       </div>
       <div id="loggedin">
         <div id="user-profile">
@@ -73,7 +76,7 @@ const mapDispatch = dispatch => {
 }
 
 export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+// export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
 
 /**
  * PROP TYPES
