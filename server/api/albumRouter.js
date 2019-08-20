@@ -18,6 +18,7 @@ router.get('/', function(req, res) {
   request.get(options, function(error, response, body) {
     data = body
     console.log('ALBUM NAME: ', data.items[0].album.name)
+    // console.log('ALBUM NAME: ', data.items)
   })
 
   res.redirect('localhost:8888')
