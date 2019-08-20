@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
 // import {auth} from '../store'
 
 /**
@@ -14,7 +15,16 @@ const AuthForm = props => {
       <div className="container">
       <div id="login">
         <h1>Log in below</h1>
-        <button type='submit'><a href="login" className="btn btn-primary btn-login">Log in with Spotify</a></button>
+        {/* these links don't go anywhere because React is funny with page navigation */}
+        <button type='submit'>
+          <Link to="/auth/spotify/login/" className="btn btn-primary btn-login">
+            Log in with Spotify
+          </Link>
+        </button>
+
+        {/* <Link className="color link center" to="/api/spotify/login/">
+            <img src="https://i.imgur.com/LTMiQWz.png" />
+        </Link> */}
       </div>
       <div id="loggedin">
         <div id="user-profile">
