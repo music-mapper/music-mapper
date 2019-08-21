@@ -37,11 +37,21 @@ router.get('/', function(req, res, next) {
 
   // json: true
  request.get(options, async function(error, response, body) {
-   console.log('error:', error) // Print the error if one occurred
-   console.log('statusCode:', response && response.statusCode) // Print the response status code if a response was received
-   console.log('body:', body.message.body.lyrics.lyrics_body) // Print the HTML for the Google homepage.
+   const rawData = await body.message.body.lyrics.lyrics_body.toUpperCase()
+   const firstReg = /[\\n]/g
+   const secondReg = /[.,\/#!$%\^&\*;:{}=\-_~()"]/g
+   //need to correct \n removal
+   let newStr = rawData.replace(firstReg, '')
+   newStr = newStr.replace(secondReg, ' ')
+    //figure out whitespace to be able to slice from -7 at end
+   newArray = newStr.split(' ').slice(0, -20)
+   //make empty object
+   //for loop over array (over its length)
+   //check if it's in the object, if not add and initialize count to 1
+   //if it is, increment count
+   let wordCounter = {}
 
-  await res.json(body.message.body.lyrics.lyrics_body)
+  res.json(newArray)
  })
 
 }
