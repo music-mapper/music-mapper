@@ -36,7 +36,7 @@ export const gotAllTracks = () => async dispatch => {
 export default function(state = defaultTracks, action) {
   switch (action.type) {
     case GET_TRACKS:
-      return [...state, ...action]
+      return [...state,  action]
     default:
       return state
   }
