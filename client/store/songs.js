@@ -23,12 +23,12 @@ export const gotAllTracks = () => async dispatch => {
   try {
     const { data } = await axios.get('/api/tracks')
     console.log('GOT ALL TRACKS ', data)
-
     dispatch(getTracks(data))
   } catch (err) {
     console.error(err)
   }
 }
+
 
 /**
  * REDUCER
