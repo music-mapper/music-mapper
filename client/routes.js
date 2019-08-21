@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome} from './components'
+import {Login, UserHome} from './components'
 import {me} from './store'
 import ReactBubbleChart from './components/react-bubble-chart'
 
@@ -20,7 +20,6 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
         <Route path="/chart" component={ReactBubbleChart} />
         {isLoggedIn && (
           <Switch>
