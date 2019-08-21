@@ -16,9 +16,9 @@ router.get('/', function(req, res) {
   }
   // use the access token to access the Spotify Web API
   request.get(options, function(error, response, body) {
-    // console.log('TRACKS(ONE) SONG: ', body.items[3].track.name)
-    // console.log('TRACKS(ONE) ARTIST: ', body.items[3].track.artists)
-    console.log('GET ALL TRACKS ', body.items)
+    console.log('TRACKS(ONE) SONG: ', body.items[3].track.name)
+    console.log('TRACKS(ONE) ARTIST: ', body.items[3].track.artists[0].name)
+    // console.log('GET ALL TRACKS ', body.items)
     // res.send(body.items)
   })
 
