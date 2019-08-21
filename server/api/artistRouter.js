@@ -17,7 +17,8 @@ router.get('/', function(req, res) {
   // use the access token to access the Spotify Web API
   request.get(options, function(error, response, body) {
     data = body
-    console.log('ARTISTS GENRE: ', body.artists.items[0].genres)
+    // console.log('ARTISTS GENRE: ', body.artists.items[0].genres)
+    console.log('ARTISTS NAME: ', body.artists.items[0].name)
   })
 
   res.redirect('localhost:8888')
