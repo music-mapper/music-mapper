@@ -4,20 +4,24 @@ import {connect} from 'react-redux'
 
 class ThirdGraph extends React.Component{
 
+  componentDidMount(){
+    this.props.gotAllTracks()
+  }
 
 render(){
   console.log(this.props)
-  let defaultTracks = this.props
+  let {defaultTracks, loading} = this.props
+  if (loading) return <div>Loading...</div>
   if (defaultTracks === undefined){
     defaultTracks = []
   }
   return(
     <div>
       {
-        defaultTracks.map(song =>{
+        defaultTracks.map(track =>{
           return (
-            <div>{song.track}</div>,
-            <div>{song.track.name}</div>
+            <div>{track.track}</div>,
+            <div>{track.track.name}</div>
           )
         })
       }
@@ -27,8 +31,13 @@ render(){
 }
 
 const mapStateToProps = (state) => ({
-  defaultTracks: state.defaultTracks
+  loading: state.loading,
+  defaultTracks: state.songsReducer.defaultTracks
 })
 
-export default connect(mapStateToProps)(ThirdGraph)
+const mapDispatchToProps = (dispatch) => ({
+gotAllTracks: () =>dispatch(gotAllTracks)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ThirdGraph)
 
