@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import {Login, UserHome} from './components'
 import {me} from './store'
 import ReactBubbleChart from './components/react-bubble-chart'
+import reactThirdGraph from './components/reactThirdGraph';
 
 /**
  * COMPONENT
@@ -21,6 +22,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/chart" component={ReactBubbleChart} />
+        <Route path="/graphthree" component={reactThirdGraph} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
