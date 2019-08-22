@@ -1,5 +1,8 @@
 import React from 'react'
 import * as d3 from 'd3'
+import {gotAllLyrics} from '../store/songs'
+import {connect} from 'react-redux'
+
 
 var dataset = {
   children: [
@@ -15,12 +18,13 @@ var dataset = {
   ]
 }
 
-export default class BubbleChart extends React.Component{
+class BubbleChart extends React.Component{
   constructor(props){
     super(props)
     this.createBubbleGraph = this.createBubbleGraph.bind(this)
   }
   componentDidMount(){
+    this.props.gotAllLyrics()
     this.createBubbleGraph()
   }
   componentDidUpdate() {
@@ -78,6 +82,10 @@ node
   .style('fill', function(d, i) {
     return color(i)
   })
+  .transition()
+  .attr("opacity", 0.5)
+  .attr("opacity", 1)
+  .duration(2500)
 // Add visible text to each node (title above maybe not visible?)
 node
   .append('text')
@@ -117,3 +125,12 @@ d3.select(self.frameElement).style('height', diameter + 'px')
 }
 
 
+const mapStateToProps = (state) => ({
+  lyrics: state.songsReducer.lyrics
+})
+
+const mapDispatchToProps = (dispatch) => ({
+gotAllLyrics: () =>dispatch(gotAllLyrics)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(BubbleChart)
