@@ -4,17 +4,25 @@ import axios from 'axios'
 /**
  * ACTION TYPES
  */
+const GETTING_TRACKS = 'GETTING_TRACKS'
 const GET_TRACKS = 'GET_TRACKS'
 
 /**
  * INITIAL STATE
  */
-const defaultTracks = []
+const initialState={
+  defaultTracks:[],
+  loading: false
+}
 
 /**
  * ACTION CREATORS
  */
-const getTracks = () => ({type: GET_TRACKS})
+const getTracks = (data) => ({
+  type: GET_TRACKS,
+  data
+
+})
 
 /**
  * THUNK CREATORS
@@ -33,10 +41,12 @@ export const gotAllTracks = () => async dispatch => {
 /**
  * REDUCER
  */
-export default function(state = defaultTracks, action) {
+export default function songsReducer(state = {initialState}, action) {
   switch (action.type) {
+    case GETTING_TRACKS:
+      return {...state, loading: true}
     case GET_TRACKS:
-      return [...state, ...action]
+      return {...state, state: action.data}
     default:
       return state
   }
