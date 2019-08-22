@@ -38,22 +38,24 @@ router.get('/', function(req, res, next) {
   // json: true
  request.get(options, async function(error, response, body) {
    const rawData = await body.message.body.lyrics.lyrics_body.toUpperCase()
-   const firstReg = /[\\n]/g
-   const secondReg = /[.,\/#!$%\^&\*;:{}=\-_~()"]/g
-   //need to correct \n removal
-   let newStr = rawData.replace(firstReg, '')
-   newStr = newStr.replace(secondReg, ' ')
-    //figure out whitespace to be able to slice from -7 at end
-   newArray = newStr.split(' ').slice(0, -20)
-   //make empty object
-   //for loop over array (over its length)
-   //check if it's in the object, if not add and initialize count to 1
-   //if it is, increment count
+   const secondReg = /[.,\/#!?$%\^&\*;:{}=\-_~()"\d\n]/g
+   let newStr = rawData.replace(secondReg, ' ')
+    //slice from -7 at end to remove needless warning
+   newArray = newStr.split(' ').filter(el => el !== '').slice(0, -7)
+   // count the words--could do more than one here
    let wordCounter = {}
-
-  res.json(newArray)
+   newArray.forEach(word => {
+     wordCounter[word] = (wordCounter[word]) ? wordCounter[word] + 1 : 1
+   })
+   let outputData = []
+   for (key in wordCounter) {
+    outputData.push({
+      Name: key,
+      Count: wordCounter[key]
+    })
+   }
+  res.json(outputData)
  })
-
 }
 catch (err) {
   next(err)
