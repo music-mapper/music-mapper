@@ -21,26 +21,26 @@ module.exports = router
 
 // let id = "3lFGBrRWUxpTfhhq6lGBRw"
 router.get('/', function(req, res, next) {
-  // try{
-  // //  console.log(`Access token is ${global.access_token}`)
-  // let data
-  // var options = {
-  //   url: 'https://api.spotify.com/v1/me/tracks',
-  //   headers: {Authorization: 'Bearer ' + global.access_token},
-  //   json: true
-  // }
-  // // use the access token to access the Spotify Web API
-  // request.get(options, function(error, response, body) {
+  try{
+  //  console.log(`Access token is ${global.access_token}`)
+  let data
+  var options = {
+    url: 'https://api.spotify.com/v1/me/tracks',
+    headers: {Authorization: 'Bearer ' + global.access_token},
+    json: true
+  }
+  // use the access token to access the Spotify Web API
+  request.get(options, function(error, response, body) {
 
-  //   const  trackInfo = []
-  //   body.items.map(song =>
-  //   trackInfo.push({
-  //   id: song.track.id,
-  //   name: song.track.name})
-  //   )
-  //     console.log(trackInfo)
+    const  trackInfo = []
+    body.items.map(song =>
+    trackInfo.push({
+    id: song.track.id,
+    name: song.track.name})
+    )
+      res.send(trackInfo)
 
-  // })
+  })
 
 var newOptions={url: `https://api.spotify.com/v1/audio-features?ids=${id}`, headers: {Authorization: 'Bearer ' + global.access_token}, json: true}
 
@@ -51,6 +51,10 @@ var newOptions={url: `https://api.spotify.com/v1/audio-features?ids=${id}`, head
     console.log('AUDIO FEATURES: ', body.audio_features)
   })
   res.redirect('localhost:8888')
+}
+catch(error){
+  next(error)
+}
 })
 
 // danceability: 0.862,
