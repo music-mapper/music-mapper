@@ -5,9 +5,9 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 //ADDED BUT NOT CURRENTLY USED
 import auth from './auth'
-import songsReducer from './songs'
+import songs from './songs'
 
-const reducer = combineReducers({user, auth, songsReducer})
+const reducer = combineReducers({user, auth, songs})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
@@ -15,5 +15,6 @@ const store = createStore(reducer, middleware)
 
 export default store
 export * from './user'
+export * from './songs'
 //ADDED BUT NOT CURRENTLY USED
 export * from './auth'

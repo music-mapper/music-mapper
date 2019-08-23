@@ -11,7 +11,7 @@ const GET_LYRICS = 'GET_LYRICS'
 /**
  * INITIAL STATE
  */
-const initialState= {
+const songs= {
   // defaultTracks:[],
   // loading: false
   lyrics: []
@@ -46,8 +46,9 @@ const getLyrics = (data) => ({
 
 export const gotAllLyrics = () => async dispatch => {
   try {
-    const { data } = await axios.get('/api/tracks')
-    console.log('GOT ALL TRACKS ', data)
+    console.log('GETTING DATA')
+    const data = await axios.get('/api/tracks')
+    console.log('this is data in thunk', data)
     dispatch(getLyrics(data))
   } catch (err) {
     console.error(err)
@@ -58,7 +59,7 @@ export const gotAllLyrics = () => async dispatch => {
 /**
  * REDUCER
  */
-export default function songsReducer(state = {initialState}, action) {
+export default function (state = songs, action) {
   switch (action.type) {
     // case GETTING_TRACKS:
     //   return {...state, loading: true}
