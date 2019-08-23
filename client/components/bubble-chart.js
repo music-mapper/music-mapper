@@ -2,6 +2,7 @@ import React from 'react'
 import * as d3 from 'd3'
 import {gotAllLyrics} from '../store'
 import {connect} from 'react-redux'
+import { create } from 'domain';
 
 // var dataset = {
 //   children: []
@@ -11,29 +12,38 @@ import {connect} from 'react-redux'
 class BubbleChart extends React.Component{
   constructor(props){
     super(props)
-    // this.state = {
-    //   children: []
-    // }
+    this.state = {
+      children: []
+    }
     this.createBubbleGraph = this.createBubbleGraph.bind(this)
   }
-  componentDidMount(){
-    this.props.gotAllLyrics()
+  async componentDidMount(){
+    try {
+      await this.props.gotAllLyrics()
+      this.createBubbleGraph()
+
+    } catch (error) {
+      console.log('error in component did mount', error)
+
+    }
+    // await this.props.gotAllLyrics()
     // this.setState({children: this.props.lyrics})
+    // this.createBubbleGraph()
+    // if (this.props) {
+    //   this.createBubbleGraph()
 
+    // }
     console.log('within component did mount', this.props)
-
-    if (this.props.lyrics.length > 0) {
-      this.createBubbleGraph()
-    }
+    // this.createBubbleGraph()
   }
-  componentDidUpdate() {
-    if (this.props.lyrics.length > 0) {
-      this.createBubbleGraph()
-    }
-  }
+  // componentDidUpdate() {
+  //   if (this.props.lyrics.length > 0) {
+  //     this.createBubbleGraph()
+  //   }
+  // }
   createBubbleGraph(){
 
-    console.log('within create bubble graph', this.props)
+    console.log('within create bubble graph', this.props.lyrics)
 
     // Set the overall diameter for the chart in pixels
     var diameter = 600
@@ -81,7 +91,7 @@ class BubbleChart extends React.Component{
     node
       .append('circle')
       .attr('r', function(d) {
-        return d.r
+        return d.Count
       })
       .style('fill', function(d, i) {
         return color(i)
@@ -97,11 +107,11 @@ class BubbleChart extends React.Component{
       .style('text-anchor', 'middle')
       .text(function(d) {
         console.log('INSIDE NODE', d.data)
-        return d.data.Name.substring(0, d.r / 3)
+        return d.r / 5
       })
       .attr('font-family', 'sans-serif')
       .attr('font-size', function(d) {
-        return d.r / 5
+        return d.Count / 5
       })
       .attr('fill', 'white')
     // Add more visible text to show the data count in each node
@@ -122,11 +132,18 @@ class BubbleChart extends React.Component{
 
     }
     render(){
+      if (this.props.lyrics.length === 0) {
+        return <div>Loading...</div>
+      }
       console.log('inside render', this.props)
-      const lyrics = this.props
+      // const lyrics = this.props.lyrics
+      console.log('lyrics on props within render', this.props)
       return(
+        <div>
+        <div><h1>{this.props.lyrics.data[0].Name}</h1></div>
         <svg ref={node => this.node = node}
         width={0} height={0}></svg>
+        </div>
       )
     }
   }
