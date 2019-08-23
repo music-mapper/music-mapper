@@ -6,8 +6,8 @@ export default class ReactBubbleChart extends React.Component{
   render(){
     return(
       <div>
-        <BubbleChart size={[500,500]} />
-        <StreamGraph />
+        <BubbleChart size={[1000,1000]} />
+        {/* <StreamGraph /> */}
       </div>
     )
   }
