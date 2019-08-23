@@ -61,28 +61,18 @@ router.get('/', async function(req, res, next) {
     catch(error) {
       console.log('failed', error)
     }
-
+    concatArr.forEach(word => {
+      wordCounter[word] = wordCounter[word] ? wordCounter[word] + 1 : 1
+    })
+    let outputData = []
+    for (key in wordCounter) {
+      outputData.push({
+        Name: key,
+        Count: wordCounter[key]
+      })
+    }
+    res.json(outputData)
+  } catch (error) {
+    console.log('failed', error)
+  }
 })
-
-
-
-
-//     })
-//   })
-//   let outputData = []
-//   for (key in wordCounter) {
-//     console.log('output function')
-//    outputData.push({
-//      Name: key,
-//      Count: wordCounter[key]
-//    })
-//   }
-//  res.json(outputData)
-// }).catch(function (error){
-//   console.log('failed')
-// })
-//   }
-// catch (err) {
-//   next(err)
-// }
-// })
