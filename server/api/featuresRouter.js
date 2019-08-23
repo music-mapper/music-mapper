@@ -31,7 +31,7 @@ router.get('/', async function(req, res, next) {
 
     response.items.map(song => trackInfo.push({id: song.track.id}))
 
-  // console.log("TRACK INFO ", trackInfo)
+  console.log("TRACK INFO ", trackInfo)
 
   let audioFeatures = []
 
@@ -44,7 +44,7 @@ router.get('/', async function(req, res, next) {
   //MUST ONLY HAVE ONE ASYNC FOR MULTIPLE AWAIT
   let response2 = await rp(newOptions)
 
-  // console.log('AUDIO FEATURES: ', response2.audio_features)
+  console.log('AUDIO FEATURES: ', response2.audio_features)
   audioFeatures.push(response2)
   }
   res.send(audioFeatures)
