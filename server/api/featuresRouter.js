@@ -47,8 +47,39 @@ router.get('/', async function(req, res, next) {
   // console.log('AUDIO FEATURES: ', response2.audio_features)
   audioFeatures.push(response2)
   }
-  res.send(audioFeatures)
+  let numOfTracks = audioFeatures.length;
+  let combinedFeautures = {danceability: 0, energy: 0, speechiness: 0, acousticness:0, instrumentalness: 0, liveness: 0, valence: 0 }
+  for (let i = 0; i < audioFeatures.length; i ++) {
+    // console.log(audioFeatures[i].audio_features[0])
+    spotifyObj = audioFeatures[i].audio_features[0]
+    for (let key in spotifyObj){
+      if (key === 'danceability') {
+        combinedFeautures.danceability+= spotifyObj[key]
+    }
+    if (key === 'energy') {
+      combinedFeautures.energy+= spotifyObj[key]
+  }
+  if (key === 'speechiness') {
+    combinedFeautures.speechiness+= spotifyObj[key]
 }
+if (key === 'acousticness') {
+  combinedFeautures.acousticness+= spotifyObj[key]
+}
+if (key === 'instrumentalness') {
+  combinedFeautures.instrumentalness+= spotifyObj[key]
+}
+if (key === 'liveness') {
+  combinedFeautures.liveness+= spotifyObj[key]
+}
+if (key === 'valence') {
+  combinedFeautures.valence+= spotifyObj[key]
+}
+  }
+
+}
+res.send(combinedFeautures)
+
+  }
 catch(error){
   next(error)
 }
