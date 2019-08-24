@@ -6,8 +6,9 @@ import user from './user'
 //ADDED BUT NOT CURRENTLY USED
 import auth from './auth'
 import songs from './songs'
+import audioFeatures from './features'
 
-const reducer = combineReducers({user, auth, songs})
+const reducer = combineReducers({user, auth, songs, audioFeatures})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
@@ -16,5 +17,7 @@ const store = createStore(reducer, middleware)
 export default store
 export * from './user'
 export * from './songs'
+export * from './features'
+
 //ADDED BUT NOT CURRENTLY USED
 export * from './auth'
