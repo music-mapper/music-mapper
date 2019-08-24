@@ -3,22 +3,22 @@ import * as d3 from 'd3'
 import {gotAllLyrics} from '../store'
 import {connect} from 'react-redux'
 
-class BubbleChart extends React.Component{
-  constructor(props){
+class CollisionChart extends React.Component {
+  constructor(props) {
     super(props)
     this.createBubbleGraph = this.createBubbleGraph.bind(this)
   }
-  async componentDidMount(){
+
+  async componentDidMount() {
     try {
       await this.props.gotAllLyrics()
       this.createBubbleGraph()
-
     } catch (error) {
       console.log('error in component did mount', error)
-
     }
   }
-  createBubbleGraph(){
+
+  createBubbleGraph() {
     let dataset = {
       children: this.props.lyrics.data
     }
@@ -43,6 +43,7 @@ class BubbleChart extends React.Component{
     var nodes = d3.hierarchy(dataset).sum(function(d) {
       return d.Count
     })
+
     // Takes all of the nodes above, creates a bubble for each,
     // and places them at the appropriate x/y coordinates in the svg
     // (this only adds elements to the graph, they have no size or color yet)
@@ -72,8 +73,8 @@ class BubbleChart extends React.Component{
         return color(i)
       })
       .transition()
-      .attr("opacity", 0.5)
-      .attr("opacity", 1)
+      .attr('opacity', 0.5)
+      .attr('opacity', 1)
       .duration(2500)
     // Add visible text to each node (title above maybe not visible?)
     node
@@ -104,29 +105,48 @@ class BubbleChart extends React.Component{
       .attr('fill', 'white')
     // Set the overall height of the frame around the chart
     d3.select(self.frameElement).style('height', diameter + 'px')
-    }
-    render(){
-      if (this.props.lyrics.length === 0) {
-        return <div>Loading...</div>
-      }
-      return(
-        <svg ref={node => this.node = node}
-        width={0} height={0}></svg>
-      )
-    }
+
+        //COLLISION CODE
+    /////////////////////////////////////////////
+    root = nodes[0]
+
+    root.radius = 0
+    root.fixed = true
+
+    /////////////////////////////////////////////
+
   }
 
-const mapStateToProps = (state) => ({
+
+
+
+
+  render() {
+    if (this.props.lyrics.length === 0) {
+      return <div>Loading...</div>
+    }
+    return <svg ref={node => (this.node = node)} width={0} height={0} />
+  }
+}
+
+const mapStateToProps = state => ({
   lyrics: state.songs.lyrics
 })
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   gotAllLyrics: () => dispatch(gotAllLyrics())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(BubbleChart)
+export default connect(mapStateToProps, mapDispatchToProps)(CollisionChart)
 
 
-//replace "d3.geom.quadtree" with "d3.quadtree"
-//replace "d3.scale.category10" with "d3.scaleOrdinal(d3.schemeCategory10)"
-//replace "d3.layout.force" with "d3.forceSimulation"
+
+
+
+
+
+
+
+
+
+
