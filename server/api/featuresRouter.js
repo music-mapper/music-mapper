@@ -76,8 +76,14 @@ if (key === 'valence') {
 }
   }
 
+  finalCombinedFeatures = []
+ for (let key in combinedFeautures) {
+   finalCombinedFeatures.push({name: [key], rating: Number(combinedFeautures[key])})
+ }
+
+
 }
-res.send(combinedFeautures)
+res.send(finalCombinedFeatures)
 
   }
 catch(error){
