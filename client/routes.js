@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, UserHome} from './components'
-import {me} from './store'
+import {Login} from './components'
+// import {me} from './store'
 import ReactBubbleChart from './components/react-bubble-chart'
 import BarGraph from './components/firstBarChart';
 
@@ -23,12 +23,6 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/lyrics" component={ReactBubbleChart} />
         <Route path="/features" component={BarGraph} />
-        {isLoggedIn && (
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-          </Switch>
-        )}
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
       </Switch>
