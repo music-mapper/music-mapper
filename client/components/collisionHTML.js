@@ -17,14 +17,22 @@ class BubbleChart extends React.Component {
     }
   }
   createBubbleGraph() {
+    let dataset = {children: this.props.lyrics.data}
     var width = window.innerWidth
-    var height = window.innerHeight
 
-    var nodes = d3.range(200).map(function() {
-        return {r: Math.random() * 12 + 4}
+    var height = window.innerHeight
+    //FROM BUBBLE CHART
+
+
+    //END OF BUBBLE CHART/////////////////////
+    var nodes = d3.range(dataset.children.length).map(function(d, i) {
+        return {r: dataset.children[i].Count}
       }),
       root = nodes[0]
-    var color = d3.scaleOrdinal(d3.schemeCategory10)
+
+      console.log("THIS IS NODES ", nodes)
+    // Set a color scale to use when coloring in the different nodes in the chart
+    const color = d3.scaleOrdinal(d3.schemeAccent)
 
     root.radius = 0
     root.fixed = true
@@ -86,6 +94,7 @@ class BubbleChart extends React.Component {
     })
   }
   render() {
+    // console.log('THIS IS MY DATASET ', this.props.lyrics.data)
     if (this.props.lyrics.length === 0) {
       return <div>Loading...</div>
     }
