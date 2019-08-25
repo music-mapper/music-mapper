@@ -44,43 +44,40 @@ router.get('/', async function(req, res, next) {
   //MUST ONLY HAVE ONE ASYNC FOR MULTIPLE AWAIT
   let response2 = await rp(newOptions)
 
-  // console.log('AUDIO FEATURES: ', response2.audio_features)
+
   audioFeatures.push(response2)
   }
   let numOfTracks = audioFeatures.length;
-  let combinedFeautures = {danceability: 0, energy: 0, speechiness: 0, acousticness:0, instrumentalness: 0, liveness: 0, valence: 0 }
+  let combinedFeautures = {Danceability: 0, Energy: 0, Speechiness: 0, Liveness: 0, Valence: 0, Acousticness: 0 }
   for (let i = 0; i < audioFeatures.length; i ++) {
-    // console.log(audioFeatures[i].audio_features[0])
     spotifyObj = audioFeatures[i].audio_features[0]
     for (let key in spotifyObj){
       if (key === 'danceability') {
-        combinedFeautures.danceability+= spotifyObj[key]
+        combinedFeautures.Danceability+= spotifyObj[key]
     }
     if (key === 'energy') {
-      combinedFeautures.energy+= spotifyObj[key]
+      combinedFeautures.Energy+= spotifyObj[key]
   }
   if (key === 'speechiness') {
-    combinedFeautures.speechiness+= spotifyObj[key]
-}
-if (key === 'acousticness') {
-  combinedFeautures.acousticness+= spotifyObj[key]
-}
-if (key === 'instrumentalness') {
-  combinedFeautures.instrumentalness+= spotifyObj[key]
+    combinedFeautures.Speechiness+= spotifyObj[key]
 }
 if (key === 'liveness') {
-  combinedFeautures.liveness+= spotifyObj[key]
+  combinedFeautures.Liveness+= spotifyObj[key]
 }
 if (key === 'valence') {
-  combinedFeautures.valence+= spotifyObj[key]
+  combinedFeautures.Valence+= spotifyObj[key]
+}
+if (key === 'acousticness') {
+  combinedFeautures.Acousticness+= spotifyObj[key]
 }
   }
 
   finalCombinedFeatures = []
  for (let key in combinedFeautures) {
-   finalCombinedFeatures.push({name: [key], rating: Number(combinedFeautures[key])})
+   finalCombinedFeatures.push({Name: key, Count:
+     Math.round(Number((combinedFeautures[key]/numOfTracks) *100))
+    })
  }
-
 
 }
 res.send(finalCombinedFeatures)
