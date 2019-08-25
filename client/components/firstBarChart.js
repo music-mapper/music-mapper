@@ -23,6 +23,7 @@ const TriangleBar = (props) => {
   return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
 };
 
+//sets shape of TriangleBar using propTypes from recharts instead of Props
 TriangleBar.propTypes = {
   fill: PropTypes.string,
   x: PropTypes.number,
