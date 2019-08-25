@@ -5,26 +5,23 @@ import {
 
 const data = [
   {
-    name: 'Page A', uv: 4000
+    name: 'Paolo Nuitini', uv: 69
   },
   {
-    name: 'Page B', uv: 3000
+    name: 'David Gray', uv: 65
   },
   {
-    name: 'Page C', uv: -1000
+    name: 'Bright Eyes', uv: 63
   },
   {
-    name: 'Page D', uv: 500
+    name: 'Drake', uv: 99
   },
   {
-    name: 'Page E', uv: -2000
+    name: 'Sara Bareilles', uv: 74
   },
   {
-    name: 'Page F', uv: -250
-  },
-  {
-    name: 'Page G', uv: 3490
-  },
+    name: 'Queen', uv: 92
+  }
 ];
 
 const gradientOffset = () => {
