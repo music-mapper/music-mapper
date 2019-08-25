@@ -3,6 +3,7 @@ import {Route, Switch} from 'react-router-dom'
 import {Login} from './components'
 import ReactBubbleChart from './components/react-bubble-chart'
 import BarGraph from './components/firstBarChart'
+import Triangle from './components/triangle';
 
 /**
  * COMPONENT
@@ -16,6 +17,8 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/lyrics" component={ReactBubbleChart} />
         <Route path="/features" component={BarGraph} />
+        <Route path="/triangle" component={Triangle} />
+
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
       </Switch>
