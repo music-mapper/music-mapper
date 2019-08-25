@@ -1,20 +1,31 @@
 import React from 'react'
 import * as d3 from 'd3'
-import {gotAllLyrics} from '../store'
-import {connect} from 'react-redux'
 
-class BubbleChart extends React.Component {
+// var dataset = {
+//   children: [
+//     {Name: 'Basil', Count: 5},
+//     {Name: 'cute', Count: 2},
+//     {Name: 'pup', Count: 2},
+//     {Name: 'walk', Count: 1},
+//     {Name: 'break', Count: 1},
+//     {Name: 'gotta', Count: 1},
+//     {Name: 'be', Count: 1},
+//     {Name: 'super', Count: 3},
+//     {Name: 'duper', Count: 2}
+//   ]
+// }
+
+// Set the overall diameter for the chart in pixels
+export default class BubbleChart extends React.Component {
   constructor(props) {
     super(props)
     this.createBubbleGraph = this.createBubbleGraph.bind(this)
   }
-  async componentDidMount() {
-    try {
-      await this.props.gotAllLyrics()
-      this.createBubbleGraph()
-    } catch (error) {
-      console.log('error in component did mount', error)
-    }
+  componentDidMount() {
+    this.createBubbleGraph()
+  }
+  componentDidUpdate() {
+    this.createBubbleGraph()
   }
   createBubbleGraph() {
     var width = window.innerWidth
@@ -37,7 +48,9 @@ class BubbleChart extends React.Component {
       .velocityDecay(0.2)
       .force('x', forceX)
       .force('y', forceY)
-      .force('collide', d3
+      .force(
+        'collide',
+        d3
           .forceCollide()
           .radius(function(d) {
             if (d === root) {
@@ -45,7 +58,8 @@ class BubbleChart extends React.Component {
             }
             return d.r + 0.5
           })
-          .iterations(5))
+          .iterations(5)
+      )
       .nodes(nodes)
       .on('tick', ticked)
 
@@ -86,20 +100,6 @@ class BubbleChart extends React.Component {
     })
   }
   render() {
-    if (this.props.lyrics.length === 0) {
-      return <div>Loading...</div>
-    }
     return <svg ref={node => (this.node = node)} width={0} height={0} />
   }
 }
-
-const mapStateToProps = state => ({
-  lyrics: state.songs.lyrics
-})
-
-const mapDispatchToProps = dispatch => ({
-  gotAllLyrics: () => dispatch(gotAllLyrics())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(BubbleChart)
-
