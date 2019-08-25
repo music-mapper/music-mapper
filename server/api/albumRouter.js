@@ -44,13 +44,13 @@ router.get('/', async function(req, res) {
       returnArr.push(...genre)
     }
     returnArr.forEach(word => {
-      counter[word] = counter[word] ? counter[word] + 1 : 1
+      counter[word] = counter[word] ? counter[word] + 2 : 2
     })
     let data = []
     for (key in counter){
       data.push({
-        genre: key,
-        count: counter[key]
+        text: key,
+        value: counter[key]
       })
     }
     res.json(data)

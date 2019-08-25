@@ -7,8 +7,9 @@ import user from './user'
 import auth from './auth'
 import songs from './songs'
 import audioFeatures from './features'
+import genres from './genres'
 
-const reducer = combineReducers({user, auth, songs, audioFeatures})
+const reducer = combineReducers({user, auth, songs, audioFeatures, genres})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
