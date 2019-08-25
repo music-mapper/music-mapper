@@ -6,7 +6,7 @@ import {Login, UserHome} from './components'
 import {me} from './store'
 import ReactBubbleChart from './components/react-bubble-chart'
 import BarGraph from './components/firstBarChart';
-import StreamGraph from './components/streamGraph'
+import GenreMap from './components/GenreMap'
 
 /**
  * COMPONENT
@@ -24,7 +24,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/lyrics" component={ReactBubbleChart} />
         <Route path="/features" component={BarGraph} />
-        <Route path="/genres" component={StreamGraph} />
+        <Route path="/genres" component={GenreMap} />
 
         {isLoggedIn && (
           <Switch>
