@@ -1,19 +1,19 @@
 import React from 'react'
 import * as d3 from 'd3'
 
-var dataset = {
-  children: [
-    {Name: 'Basil', Count: 5},
-    {Name: 'cute', Count: 2},
-    {Name: 'pup', Count: 2},
-    {Name: 'walk', Count: 1},
-    {Name: 'break', Count: 1},
-    {Name: 'gotta', Count: 1},
-    {Name: 'be', Count: 1},
-    {Name: 'super', Count: 3},
-    {Name: 'duper', Count: 2}
-  ]
-}
+// var dataset = {
+//   children: [
+//     {Name: 'Basil', Count: 5},
+//     {Name: 'cute', Count: 2},
+//     {Name: 'pup', Count: 2},
+//     {Name: 'walk', Count: 1},
+//     {Name: 'break', Count: 1},
+//     {Name: 'gotta', Count: 1},
+//     {Name: 'be', Count: 1},
+//     {Name: 'super', Count: 3},
+//     {Name: 'duper', Count: 2}
+//   ]
+// }
 
 // Set the overall diameter for the chart in pixels
 export default class BubbleChart extends React.Component {
@@ -48,7 +48,9 @@ export default class BubbleChart extends React.Component {
       .velocityDecay(0.2)
       .force('x', forceX)
       .force('y', forceY)
-      .force('collide', d3
+      .force(
+        'collide',
+        d3
           .forceCollide()
           .radius(function(d) {
             if (d === root) {
@@ -56,7 +58,8 @@ export default class BubbleChart extends React.Component {
             }
             return d.r + 0.5
           })
-          .iterations(5))
+          .iterations(5)
+      )
       .nodes(nodes)
       .on('tick', ticked)
 
@@ -100,5 +103,3 @@ export default class BubbleChart extends React.Component {
     return <svg ref={node => (this.node = node)} width={0} height={0} />
   }
 }
-
-
