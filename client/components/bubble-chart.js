@@ -104,3 +104,20 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BubbleChart)
+
+
+//replace "d3.geom.quadtree" with "d3.quadtree"
+//replace "d3.scale.category10" with "d3.scaleOrdinal(d3.schemeCategory10)"
+//replace "d3.layout.force" with "d3.forceSimulation"
+
+//chargeForce, forceX, and forceY need to be added for .forceSimulation()
+    // var chargeForce = d3.forceManyBody()
+    // const forceX = d3.forceX(width / 2).strength(0.5)
+    // const forceY = d3.forceY(height / 2).strength(0.5)
+
+
+    //  var force = d3
+    //    .forceSimulation()
+    //    .force('charge', chargeForce)
+    //    .force('x', forceX)
+    //    .force('y', forceY)
