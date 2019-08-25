@@ -3,7 +3,6 @@ import WordCloud from 'react-d3-cloud';
 import {gotAllGenres} from '../store/genres';
 import {connect} from 'react-redux'
 
-
 const fontSizeMapper =  word => Math.log2(word.value) * 15;
 const rotate = word => word.value % 360;
 
@@ -22,8 +21,7 @@ render(){
   if (this.props.genres.data.value === 1){
     this.props.genres.data.value *= 10
   }
-  console.log(this.props.genres.data)
-  console.log(this.props.genres.data[2].value)
+
   return(<WordCloud
     data={this.props.genres.data}
     fontSizeMapper={fontSizeMapper}
