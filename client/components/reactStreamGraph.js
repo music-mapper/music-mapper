@@ -1,11 +1,11 @@
 import React from 'react'
-import Streamgraph from './streamGraph'
+import GenreMap from './GenreMap'
 
 export default class ReactStreamGraph extends React.Component{
   render(){
     return(
       <div>
-        <Streamgraph/>
+        <GenreMap/>
       </div>
     )
   }
