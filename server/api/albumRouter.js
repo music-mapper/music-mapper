@@ -10,6 +10,7 @@ module.exports = router
 router.get('/', async function(req, res) {
   let trackInfo = []
   let returnArr = []
+  let counter = {}
   console.log(`Access token is ${global.access_token}`)
   let options = {
     url: 'https://api.spotify.com/v1/me/albums',
@@ -30,8 +31,6 @@ router.get('/', async function(req, res) {
     })
     for (let i = 0; i < trackInfo.length; i++){
       let id = trackInfo[i].id
-      // console.log(trackInfo[i].releaseDate)
-      // console.log(trackInfo[i].artist)
       let newOptions = {
         url: `https://api.spotify.com/v1/artists/${id}`,
         headers: {
@@ -41,24 +40,21 @@ router.get('/', async function(req, res) {
         json: true
       }
       let response2 = await rp(newOptions)
-      const release = trackInfo[i].releaseDate
       const genre = response2.genres
-      console.log(release)
-      console.log(...genre)
-      // returnArr.push({
-      //   release: trackInfo[i].releaseDate,
-      //   genre: response2.genres
-      // })
-
+      returnArr.push(...genre)
     }
-    // console.log(returnArr)
-    // console.log(trackInfo)
-  // console.log('trackInfo', response.items[0].album.artists[0].id)
-  // console.log('releasedate', response.items[0].album.release_date)
+    returnArr.forEach(word => {
+      counter[word] = counter[word] ? counter[word] + 1 : 1
+    })
+    let data = []
+    for (key in counter){
+      data.push({
+        genre: key,
+        count: counter[key]
+      })
+    }
+    res.json(data)
   } catch (error) {
     console.log('error in the albumRouter', error)
   }
-
-  res.redirect('localhost:8888')
-
 })
