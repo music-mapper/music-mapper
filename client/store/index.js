@@ -7,7 +7,7 @@ import audioFeatures from './features'
 import genres from './genres'
 
 
-const reducer = combineReducers({user, auth, songs, audioFeatures, genres})
+const reducer = combineReducers({songs, audioFeatures, genres})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
