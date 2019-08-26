@@ -61,7 +61,7 @@ const bubble = d3
   .padding(1.5)
 // Select the div, add a svg, and modify the svg to set up the canvas for chart
 const svg = d3
-  .select('.app-container')
+  .select('#triangle')
   .append('svg')
   .attr('width', diameter)
   .attr('height', diameter)
@@ -236,8 +236,9 @@ node
       return [];
     }
     return(
-      <svg ref={node => this.node = node}
-      width={0} height={0}></svg>
+      <div id='triangle'> </div>
+      // <svg ref={node => this.node = node}
+      // width={0} height={0}></svg>
     )
   }
 }
