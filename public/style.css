@@ -100,7 +100,7 @@ form div {
   flex-direction: column;
   padding: 40px 0 0;
   right: auto;
-  height: auto;
+  height: 100vh;
   justify-content: flex-end;
   box-shadow: 10px 0 30px rgba(0,0,0,.05)
 }
