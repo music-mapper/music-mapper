@@ -1,5 +1,5 @@
 import React from 'react'
-import BarGraph from './firstBarChart'
+import BarGraph from './barChart'
 
 export default class ReactBubbleChart extends React.Component{
   render(){

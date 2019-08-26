@@ -50,7 +50,9 @@ router.get('/', async function(req, res, next) {
           wordCounter[word] = wordCounter[word] ? wordCounter[word] + 1 : 1
         })
         let outputData = []
-          for (key in wordCounter) {
+        let badWords = ['THE', 'AND', 'THIS', 'A', 'THAT', 'OF', 'BUT', 'IS', 'FOR', 'TO', 'WAS', 'IT', 'I', 'ON', `IT'S`]
+          for (let key in wordCounter) {
+          if (!badWords.includes(key))
            outputData.push({
              Name: key,
              Count: wordCounter[key]
