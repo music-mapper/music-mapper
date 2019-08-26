@@ -1,9 +1,9 @@
 const router = require('express').Router()
-var rp = require('request-promise')
+const rp = require('request-promise')
 module.exports = router
 
 router.get('/', async function(req, res, next) {
-  var options = {
+  let options = {
     url: 'https://api.spotify.com/v1/me/tracks',
     headers: {Authorization: 'Bearer ' + global.access_token},
     json: true
@@ -23,7 +23,7 @@ router.get('/', async function(req, res, next) {
     for (let i = 0; i < trackInfo.length; i++) {
       let id = trackInfo[i].id
 
-      var newOptions = {
+      let newOptions = {
         url: `https://api.spotify.com/v1/audio-features?ids=${id}`,
         headers: {Authorization: 'Bearer ' + global.access_token},
         json: true
