@@ -13,7 +13,7 @@ export default class ReactBubbleChart extends React.Component {
   }
   render() {
     console.log(this.state)
-    d3.selectAll('svg > *').remove();
+    d3.selectAll('svg > *').remove()
     return (
       <div className="app">
         <div className="app-container">
@@ -60,11 +60,12 @@ export default class ReactBubbleChart extends React.Component {
           </div>
 
           <div className="app-content">
-            {this.state.currentChart === 'BarChart' && <BarChart />}
 
             {this.state.currentChart === 'GenreMap' && <GenreMap />}
 
             {this.state.currentChart === 'Triangle' && <Triangle />}
+
+            {this.state.currentChart === 'BarChart' && <BarChart />}
 
             {this.state.currentChart === 'CollisionChart' && <CollisionChart />}
           </div>
