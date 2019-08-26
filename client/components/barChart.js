@@ -3,7 +3,7 @@ import * as d3 from 'd3'
 import {connect} from 'react-redux'
 import {gotArtistsFreq} from '../store'
 
-class TreeChart extends React.Component {
+class BarChart extends React.Component {
   async componentDidMount() {
     try{
     await this.props.gotArtistsFreq()
@@ -100,4 +100,4 @@ const mapDispatchToProps = dispatch => ({
   gotArtistsFreq: () => dispatch(gotArtistsFreq())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(TreeChart)
+export default connect(mapStateToProps, mapDispatchToProps)(BarChart)
