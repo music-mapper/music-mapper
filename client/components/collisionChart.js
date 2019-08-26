@@ -63,7 +63,7 @@ class CollisionChart extends React.Component {
 
 
     let svg = d3
-      .select('.app-container')    
+      .select('#collision-chart')
       .append('svg')
       .attr('width', width)
       .attr('height', height)
@@ -133,7 +133,8 @@ class CollisionChart extends React.Component {
     if (this.props.lyrics.length === 0) {
       return <div>Loading...</div>
     }
-    return <svg ref={node => (this.node = node)} width={0} height={0} />
+    return (<div id='collision-chart'> </div>)
+    // return <svg ref={node => (this.node = node)} width={0} height={0} />
   }
 }
 
