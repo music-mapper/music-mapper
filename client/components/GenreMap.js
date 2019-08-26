@@ -18,9 +18,6 @@ render(){
   if (this.props.genres.data === undefined){
     return []
   }
-  if (this.props.genres.data.value === 1){
-    this.props.genres.data.value *= 10
-  }
 
   return(<WordCloud
     data={this.props.genres.data}

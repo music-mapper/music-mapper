@@ -25,7 +25,6 @@ router.get('/', async function(req, res, next) {
   // use the access token to access the Spotify Web API
   try {
   const response = await rp(options)
-  console.log('trackInfo', response.items)
       response.items.map(song =>
         trackInfo.push({
           artist: song.track.artists[0].name,
@@ -51,7 +50,9 @@ router.get('/', async function(req, res, next) {
           wordCounter[word] = wordCounter[word] ? wordCounter[word] + 1 : 1
         })
         let outputData = []
+
         let badWords = ['THE', 'AND', 'THIS', 'A', 'THAT', 'OF', 'BUT', 'IS', 'FOR', 'TO', 'WAS', 'IT', 'ON', `IT'S`, 'IN', 'MY', 'WITH', 'THAT\'S', 'I\'M', 'ARE', 'AT', 'IF']
+
           for (let key in wordCounter) {
           if (!badWords.includes(key))
            outputData.push({
