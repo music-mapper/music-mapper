@@ -5,7 +5,9 @@ module.exports = router
 
 router.use('/album', require('./albumRouter'))
 
-router.use('/artist', require('./artistRouter'))
+router.use('/artistsPop', require('./artistPopRouter'))
+
+router.use('/artistsFreq', require('./artistFreqRouter'))
 
 router.use('/features', require('./featuresRouter'))
 
