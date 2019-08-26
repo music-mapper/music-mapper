@@ -4,7 +4,7 @@ import {Login} from './components'
 import ReactBubbleChart from './components/react-bubble-chart'
 import GenreMap from './components/GenreMap'
 import Triangle from './components/triangle';
-import barChart from './components/barChart';
+import BarChart from './components/barChart';
 
 /**
  * COMPONENT
@@ -17,11 +17,10 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/lyrics" component={ReactBubbleChart} />
-        <Route path="/artists" component={barChart} />
-        <Route path="/features" component={BarGraph} />
+        <Route path="/artists" component={BarChart} />
 
         <Route path="/genres" component={GenreMap} />
-        <Route path="/triangle" component={Triangle} />
+        <Route path="/features" component={Triangle} />
         {/* Displays our Login component as a fallback */}
         <Route path="/features" component={Triangle} />
 
