@@ -4,8 +4,10 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import songs from './songs'
 import audioFeatures from './features'
+import genres from './genres'
 
-const reducer = combineReducers({songs, audioFeatures})
+
+const reducer = combineReducers({user, auth, songs, audioFeatures, genres})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
