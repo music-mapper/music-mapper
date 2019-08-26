@@ -25,6 +25,7 @@ router.get('/', async function(req, res, next) {
   // use the access token to access the Spotify Web API
   try {
   const response = await rp(options)
+  console.log('trackInfo', response.items)
       response.items.map(song =>
         trackInfo.push({
           artist: song.track.artists[0].name,
