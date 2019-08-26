@@ -5,7 +5,7 @@ import ReactBubbleChart from './components/react-bubble-chart'
 import GenreMap from './components/GenreMap'
 import Triangle from './components/triangle';
 import BarChart from './components/barChart';
-import AllGrpahsPage from './components/allGraphPage'
+import AllGraphsPage from './components/allGraphPage'
 /**
  * COMPONENT
  */
@@ -23,7 +23,7 @@ class Routes extends Component {
         <Route path="/features" component={Triangle} />
         {/* Displays our Login component as a fallback */}
         <Route path="/features" component={Triangle} />
-        <Route path= '/app' component={AllGrpahsPage}/>
+        <Route path= '/app' component={AllGraphsPage}/>
 
         <Route component={Login} />
       </Switch>
