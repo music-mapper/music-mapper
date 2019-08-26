@@ -4,8 +4,11 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import songs from './songs'
 import audioFeatures from './features'
+import artists from './artists'
 
-const reducer = combineReducers({songs, audioFeatures})
+
+
+const reducer = combineReducers({songs, audioFeatures, artists})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
@@ -15,3 +18,4 @@ export default store
 
 export * from './songs'
 export * from './features'
+export * from './artists'
