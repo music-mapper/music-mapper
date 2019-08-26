@@ -20,9 +20,9 @@ class BarChart extends React.Component {
       return a.value - b.value
     })
 
-    const margin = {top: 10, right: 30, bottom: 90, left: 40},
-    width = 460 - margin.left - margin.right,
-    height = 450 - margin.top - margin.bottom;
+    const margin = {top: 30, right: 40, bottom: 160, left: 80},
+    width = 800 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg = d3.select("#my_dataviz")
@@ -44,6 +44,8 @@ svg.append("g")
   .attr("transform", "translate(0," + height + ")")
   .call(d3.axisBottom(x))
   .selectAll("text")
+    .attr('font-size', 18)
+    .attr('font-weight', 'bold')
     .attr("transform", "translate(-10,0)rotate(-45)")
     .style("text-anchor", "end")
     .attr('fill', function(d, i) {
