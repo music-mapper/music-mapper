@@ -1,6 +1,6 @@
 import React from 'react'
 import BubbleChart from './bubble-chart'
-import CollisionChart from './collisionHTML'
+import CollisionChart from './collisionChart'
 
 
 export default class ReactBubbleChart extends React.Component{

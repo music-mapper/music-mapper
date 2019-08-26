@@ -3,7 +3,7 @@ import * as d3 from 'd3'
 import {gotAllLyrics} from '../store'
 import {connect} from 'react-redux'
 
-class BubbleChart extends React.Component {
+class CollisionChart extends React.Component {
   constructor(props) {
     super(props)
     this.createBubbleGraph = this.createBubbleGraph.bind(this)
@@ -144,5 +144,5 @@ const mapDispatchToProps = dispatch => ({
   gotAllLyrics: () => dispatch(gotAllLyrics())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(BubbleChart)
+export default connect(mapStateToProps, mapDispatchToProps)(CollisionChart)
 
