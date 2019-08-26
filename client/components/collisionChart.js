@@ -18,24 +18,24 @@ class CollisionChart extends React.Component {
   }
   createBubbleGraph() {
     let dataset = {children: this.props.lyrics.data}
-    var width = window.innerWidth
+    const width = window.innerWidth
 
-    var height = window.innerHeight
+    const height = window.innerHeight
 
     //Takes the length of our dataset and makes an array of length hodes.
     //Then we map through each node and make its size equivalent to the count in our dataset
-    var nodes = d3
+    let nodes = d3
     .range(dataset.children.length)
     .map(function(d, i) {
         return {r: dataset.children[i].Count * 3, name: dataset.children[i].Name, count: dataset.children[i].Count}
       })
 
 
-    var root = nodes[0]
+    let root = nodes[0]
 
     // Set a color scale to use when coloring in the different nodes in the chart
     // const color = d3.scaleOrdinal(d3.schemeAccent)
-    var color = d3.scaleOrdinal(d3.schemeCategory10)
+    const color = d3.scaleOrdinal(d3.schemeCategory10)
 
 
     root.radius = 0
@@ -44,7 +44,7 @@ class CollisionChart extends React.Component {
     const forceX = d3.forceX(width / 2).strength(0.015)
     const forceY = d3.forceY(height / 2).strength(0.015)
 
-    var force = d3
+    let force = d3
       .forceSimulation()
       .velocityDecay(0.2)
       .force('x', forceX)
@@ -61,7 +61,7 @@ class CollisionChart extends React.Component {
       .nodes(nodes)
       .on('tick', ticked)
 
-    var svg = d3
+    let svg = d3
       .select('body')
       .append('svg')
       .attr('width', width)
@@ -79,7 +79,7 @@ class CollisionChart extends React.Component {
         return color(i % 3)
       })
 
-      var label = svg
+      let label = svg
         .selectAll('.mytext')
         .data(nodes.slice(1))
         .enter()
@@ -89,7 +89,7 @@ class CollisionChart extends React.Component {
         .style('font-size', d => d.r / 3)
         .attr('fill', 'white')
 
-     var label2 = svg
+     let label2 = svg
        .selectAll('.mytext')
        .data(nodes.slice(1))
        .enter()
@@ -121,7 +121,7 @@ class CollisionChart extends React.Component {
     }
 
     svg.on('mousemove', function() {
-      var p1 = d3.mouse(this)
+      let p1 = d3.mouse(this)
       root.fx = p1[0]
       root.fy = p1[1]
       force.alphaTarget(0.3).restart() //reheat the simulation
