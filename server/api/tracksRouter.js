@@ -51,7 +51,7 @@ router.get('/', async function(req, res, next) {
           wordCounter[word] = wordCounter[word] ? wordCounter[word] + 1 : 1
         })
         let outputData = []
-        let badWords = ['THE', 'AND', 'THIS', 'A', 'THAT', 'OF', 'BUT', 'IS', 'FOR', 'TO', 'WAS', 'IT', 'I', 'ON', `IT'S`]
+        let badWords = ['THE', 'AND', 'THIS', 'A', 'THAT', 'OF', 'BUT', 'IS', 'FOR', 'TO', 'WAS', 'IT', 'ON', `IT'S`, 'IN', 'MY', 'WITH', 'THAT\'S', 'I\'M', 'ARE', 'AT', 'IF']
           for (let key in wordCounter) {
           if (!badWords.includes(key))
            outputData.push({
