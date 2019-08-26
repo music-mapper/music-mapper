@@ -61,8 +61,9 @@ class CollisionChart extends React.Component {
       .nodes(nodes)
       .on('tick', ticked)
 
+
     let svg = d3
-      .select('body')
+      .select('.app-container')    
       .append('svg')
       .attr('width', width)
       .attr('height', height)

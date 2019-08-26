@@ -39,7 +39,7 @@ router.get('/callback', function(req, res) {
     // we want to send this access token back to store somewhere...
     // (TODO how will we store this for later use?)
     global.access_token = body.access_token
-    let uri = process.env.FRONTEND_URI || 'http://localhost:8888'
+    let uri = process.env.FRONTEND_URI || 'http://localhost:8888/app'
     res.redirect(uri) // could redirect you to "logged in"
   })
 })
