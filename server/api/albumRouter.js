@@ -1,11 +1,8 @@
 const router = require('express').Router()
 let request = require('request')
 const rp = require('request-promise')
-// let querystring = require('querystring')
 module.exports = router
 
-// this is assuming that "access_token" is available as a global variable!!
-// global.access_token
 
 router.get('/', async function(req, res) {
   let trackInfo = []
