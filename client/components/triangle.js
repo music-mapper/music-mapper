@@ -38,15 +38,14 @@ export class Triangle extends React.Component{
 
     const dataset = {
       children: this.addCoordinatesToData()
-
-        // //top row
+        // top row
         // {Name: 'Liveness', Count: 49, xPosition: 225, yPosition: 0},
 
-        // //middle row
+        // middle row
         // {Name: 'Acousticness', Count: 90, xPosition: 110, yPosition: 200},
         // {Name: 'Valence', Count: 70, xPosition: 340, yPosition: 200},
 
-        // //middle bottom row
+        // bottom row
         // {Name: 'Dancibility', Count: 67, xPosition: 0, yPosition: 400},
         // {Name: 'Energy', Count: 40, xPosition: 225, yPosition: 400},
         // {Name: 'Speechiness', Count: 27, xPosition: 450, yPosition:400},
@@ -74,7 +73,7 @@ const nodes = d3.hierarchy(dataset).sum(function(d) {
 })
 
 // Takes all of the nodes above
-// and places them at the appropriate x/y coordinates in the svg
+// and places them at the appropriate x/y coordinates (so they are in a triangle form) in the svg
 // (this only adds elements to the graph, they have no size or color yet or shape yet)
 const node = svg
   .selectAll('.node')
@@ -90,7 +89,7 @@ const node = svg
   })
 
 
-//FILL EACH NODE WITH 'WATER
+//FILL EACH NODE WITH 'WATER VIA GRADIENT METHOD (WHITE AND BLUE)
 const defs = node.append("defs")
 const linearGradient = defs.append("linearGradient")
 .attr("id", function(d) {
@@ -127,10 +126,6 @@ linearGradient.append("stop")
 })
 
 
-
-
-
-
 linearGradient.append("stop")
 .attr("stop-color", 'white')
 .attr('offset', function(d) {
@@ -155,7 +150,6 @@ linearGradient.append("stop")
 })
 
 
-
 //make each node ellipse color
 const ellipse = node.append('ellipse')
 
@@ -169,7 +163,7 @@ ellipse
 .attr('stroke', function(d, i) {
   return color(i)
 })
-.attr('stroke-width', 15)
+.attr('stroke-width', 8)
 .style("fill", function(d) {
   return `url(#${d.data.Name})`
 })
@@ -182,23 +176,22 @@ ellipse
 node
   .append('text')
   .attr('dy', '60')
-  .attr('dx', '110')
+  .attr('dx', '100')
 
   .style('text-anchor', 'middle')
   .text(function(d) {
-    return d.data.Name
+    return `${d.data.Name} ♪`
   })
   .attr('font-family', 'sans-serif')
-  .attr('font-size', 18)
+  .attr('font-size', 22)
   .attr('fill', 'black')
-// Add more visible text to show the data count in each node
 
 //add TEXT: PERCENTAGE OF AUDIO FEATURE
 const dur2  = dur/6
 node
   .append('text')
-  .attr('dy', '80')
-  .attr('dx', '110')
+  .attr('dy', '85')
+  .attr('dx', '100')
   .style('text-anchor', 'middle')
   .text(function(d) {
     return `${d.data.Count-d.data.Count} %`
@@ -230,7 +223,7 @@ node
 })
 
   .attr('font-family', 'Gill Sans', 'Gill Sans MT')
-  .attr('font-size', 18)
+  .attr('font-size', 20)
   .attr('fill', 'black')
 
 
