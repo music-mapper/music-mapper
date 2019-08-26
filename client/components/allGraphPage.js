@@ -17,9 +17,7 @@ export default class ReactBubbleChart extends React.Component {
     return (
       <div className="app">
         <div className="app-container">
-          {/* <BubbleChart size={[1000, 1000]} /> */}
           <div className="app-navigation">
-
 
             <a onClick={() => this.setState({currentChart: 'CollisionChart'})}className="navigation-link">
               <span className="nav-icon">
