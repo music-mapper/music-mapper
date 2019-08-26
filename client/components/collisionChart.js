@@ -19,7 +19,6 @@ class CollisionChart extends React.Component {
   createBubbleGraph() {
     let dataset = {children: this.props.lyrics.data}
     const width = window.innerWidth
-
     const height = window.innerHeight
 
     //Takes the length of our dataset and makes an array of length hodes.
@@ -41,6 +40,7 @@ class CollisionChart extends React.Component {
     root.radius = 0
     root.fixed = true
 
+    //impacts starting x and y axis of bubble
     const forceX = d3.forceX(width / 2).strength(0.015)
     const forceY = d3.forceY(height / 2).strength(0.015)
 
