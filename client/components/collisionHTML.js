@@ -27,14 +27,16 @@ class BubbleChart extends React.Component {
     var nodes = d3
     .range(dataset.children.length)
     .map(function(d, i) {
-        return {r: dataset.children[i].Count * 3, name: dataset.children[i].Name}
+        return {r: dataset.children[i].Count * 3, name: dataset.children[i].Name, count: dataset.children[i].Count}
       })
 
 
     var root = nodes[0]
 
     // Set a color scale to use when coloring in the different nodes in the chart
-    const color = d3.scaleOrdinal(d3.schemeAccent)
+    // const color = d3.scaleOrdinal(d3.schemeAccent)
+    var color = d3.scaleOrdinal(d3.schemeCategory10)
+
 
     root.radius = 0
     root.fixed = true
@@ -77,35 +79,27 @@ class BubbleChart extends React.Component {
         return color(i % 3)
       })
 
-      //GOT THE WORDS, NEEDS TO RENDER ON X AND Y AXIS
-      // svg
-      //     .selectAll('text')
-      //     .data(dataset.children)
-      //     .enter()
-      //     .append('text')
-      //     .attr('x', (d, i) => nodes[i].x)
-      //     .attr('y', (d, i) => nodes[i].y)
-      //     .text(d => `${d.Name}`)
-      //     .style('font-size', 25)
-      //     .attr('fill', 'red')
-
-      //     console.log('x position', nodes[3].x)
-
       var label = svg
-            .selectAll('text')
-            .data(nodes.slice(1))
-            .enter()
-            .append('text')
-            .text(d => `${d.name}`)
-            .style('text-anchor', "middle")
-            .style('font-size', 11)
-            .attr('fill', 'white')
+        .selectAll('.mytext')
+        .data(nodes.slice(1))
+        .enter()
+        .append('text')
+        .text(d => `${d.name}`)
+        .style('text-anchor', 'middle')
+        .style('font-size', d => d.r / 3)
+        .attr('fill', 'white')
 
-          console.log('x position', nodes[3].x)
+     var label2 = svg
+       .selectAll('.mytext')
+       .data(nodes.slice(1))
+       .enter()
+       .append('text')
+       .text(d => `${d.count}`)
+       .style('text-anchor', 'middle')
+       .style('font-size', d => d.r / 5)
+       .attr('fill', 'white')
 
-      console.log('THIS IS NODES ', nodes)
-      // console.log('WHATS MY NODE ', node)
-
+      // console.log('THIS IS NODES ', nodes)
 
     function ticked(e) {
       svg
@@ -120,6 +114,10 @@ class BubbleChart extends React.Component {
       label
         .attr("x", function(d) {return d.x})
         .attr('y', function(d) {return d.y})
+
+      label2
+        .attr('x', function(d) {return d.x})
+        .attr('y', function(d) {return d.y + 15})
     }
 
     svg.on('mousemove', function() {
