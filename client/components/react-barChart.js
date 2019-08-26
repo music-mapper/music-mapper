@@ -1,7 +1,7 @@
 import React from 'react'
 import BarGraph from './barChart'
 
-export default class ReactBubbleChart extends React.Component{
+export default class ReactBarChart extends React.Component{
   render(){
     return(
       <div>
