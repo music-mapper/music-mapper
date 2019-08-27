@@ -17,6 +17,8 @@ export default class ReactBubbleChart extends React.Component {
     return (
       <div className="app">
         <div className="app-container">
+
+
           <div className="app-navigation">
 
             <a onClick={() => this.setState({currentChart: 'CollisionChart'})}className="navigation-link">
@@ -55,9 +57,15 @@ export default class ReactBubbleChart extends React.Component {
               </span>
               <span className="nav-label">Artists</span>
             </a>
+
+
           </div>
 
           <div className="app-content">
+
+          <div id= 'logout-button-container'>
+          <h1 id='logout-button'> LOGOUT </h1>
+          </div>
 
             {this.state.currentChart === 'GenreMap' && <GenreMap />}
 
