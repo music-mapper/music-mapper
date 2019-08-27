@@ -28,9 +28,7 @@ const getArtistsFreq = (data) => ({
 
 export const gotArtistsFreq = () => async dispatch => {
   try {
-    console.log('GETTING DATA')
     const { data } = await axios.get('/api/artistsFreq')
-    console.log('this is data in thunk', data)
     dispatch(getArtistsFreq(data))
   } catch (err) {
     console.error(err)

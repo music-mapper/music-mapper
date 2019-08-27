@@ -27,9 +27,7 @@ const getLyrics = (data) => ({
 
 export const gotAllLyrics = () => async dispatch => {
   try {
-    console.log('GETTING DATA')
     const data = await axios.get('/api/tracks')
-    console.log('this is data in thunk', data)
     dispatch(getLyrics(data))
   } catch (err) {
     console.error(err)
