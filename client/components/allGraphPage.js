@@ -45,6 +45,8 @@ export default class AllGraphPage extends React.Component {
               <span className="nav-label">Genres</span>
             </a>
 
+
+
             <a onClick={() => this.setState({
                   currentChart: 'BarChart'
                 })} className="navigation-link">
@@ -53,13 +55,19 @@ export default class AllGraphPage extends React.Component {
               </span>
               <span className="nav-label">Artists</span>
             </a>
+
+
+            <a href='https://accounts.spotify.com/en/logout' className="navigation-link">
+              <span className="nav-icon">
+              <i class="fas fa-sign-out-alt"></i>              </span>
+              <span className="nav-label">Logout</span>
+            </a>
+
+
+
+
           </div>
-
           <div className="app-content">
-
-            <div id="logout-button-container">
-              <h1 id="logout-button"> LOGOUT </h1>
-            </div>
 
             {/* only renders graph when state is equal to 'GenreMap' */}
             {this.state.currentChart === 'GenreMap' && <GenreMap />}
