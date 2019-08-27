@@ -131,3 +131,8 @@ form div {
   display: flex;
   justify-content: flex-end;
 }
+
+#loading-box {
+  display:flex;
+  justify-content: center
+}

@@ -2,6 +2,8 @@ import React from 'react'
 import * as d3 from 'd3'
 import {gotAllLyrics} from '../store'
 import {connect} from 'react-redux'
+import Loading from './Loading'
+
 
 class CollisionChart extends React.Component {
   constructor(props) {
@@ -131,7 +133,7 @@ class CollisionChart extends React.Component {
   render() {
     // console.log('THIS IS MY DATASET ', this.props.lyrics.data)
     if (this.props.lyrics.length === 0) {
-      return <div>Loading...</div>
+      return (<Loading />)
     }
     return (<div id='collision-chart'> </div>)
     // return <svg ref={node => (this.node = node)} width={0} height={0} />
