@@ -6,7 +6,7 @@ import GenreMap from './GenreMap'
 import * as d3 from 'd3'
 
 
-export default class ReactBubbleChart extends React.Component {
+export default class AllGraphPage extends React.Component {
   constructor() {
     super()
     this.state = {currentChart: 'CollisionChart'}
