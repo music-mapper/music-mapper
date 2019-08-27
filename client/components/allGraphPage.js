@@ -63,9 +63,6 @@ export default class AllGraphPage extends React.Component {
               <span className="nav-label">Logout</span>
             </a>
 
-
-
-
           </div>
           <div className="app-content">
 
