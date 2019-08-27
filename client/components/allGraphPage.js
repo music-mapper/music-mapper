@@ -66,7 +66,7 @@ export default class AllGraphPage extends React.Component {
 
           <a onClick={() => this.logout()} className="navigation-link">
             <span className="nav-icon">
-              <i className="fa fa-sign-out-alt"></i>
+            <i class="fa fa-sign-in" aria-hidden="true"></i>
             </span>
             <span className="nav-label">Logout</span>
           </a>
