@@ -13,12 +13,13 @@ export default class ReactBubbleChart extends React.Component {
   }
   render() {
     console.log(this.state)
+    //everytime the state changes, it removed the old graph so we can load the new one
     d3.selectAll('svg > *').remove()
     return (
       <div className="app">
         <div className="app-container">
           <div className="app-navigation">
-
+            {/* anchor buttons inside navigation bar */}
             <a onClick={() => this.setState({currentChart: 'CollisionChart'})}className="navigation-link">
               <span className="nav-icon">
                 <i className="fa fa-file-text-o" aria-hidden="true" />
@@ -58,7 +59,7 @@ export default class ReactBubbleChart extends React.Component {
           </div>
 
           <div className="app-content">
-
+            {/* only renders graph when state is equal to 'GenreMap' */}
             {this.state.currentChart === 'GenreMap' && <GenreMap />}
 
             {this.state.currentChart === 'Triangle' && <Triangle />}
