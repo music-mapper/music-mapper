@@ -126,3 +126,8 @@ form div {
   color: black;
 
 }
+
+#logout-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
