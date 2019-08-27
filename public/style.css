@@ -102,7 +102,7 @@ form div {
   right: auto;
   height: 100vh;
   justify-content: flex-end;
-  box-shadow: 10px 0 30px rgba(0,0,0,.05)
+  box-shadow: 10px 0 30px rgba(0,0,0,.05);
 }
 
 .app-content {
@@ -118,4 +118,11 @@ form div {
   flex-direction: column;
   width: 100px;
   height: 100px;
+  cursor: pointer;
+  color: rgba(56, 51, 75, 0.45);
+}
+
+.navigation-link:hover {
+  color: black;
+
 }
