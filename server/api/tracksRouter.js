@@ -28,6 +28,8 @@ router.get('/', async function(req, res, next) {
           name: song.track.name
         })
       )
+
+      // let api = "654dda63f72f77a4ef2567f1f064cba2"
         for (let i = 0; i < trackInfo.length; i++){
           const q_artist =  trackInfo[i].artist
           const q_track = trackInfo[i].name

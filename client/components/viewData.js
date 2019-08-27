@@ -19,12 +19,20 @@ class ViewData extends React.Component{
 
   render(){
     let {frequency, genres, features} = this.props
-    console.log(frequency)
+    if (frequency === undefined){
+      return []
+    }
     console.log('genres: ', genres)
     console.log('features: ', features)
     return(
-      <div> Hello
-        <p> {this.props.features.data}</p>
+      <div>
+        <h4>These are the artists saved in your tracks and albums which we used to create your bar chart: </h4>
+        <ul>{frequency.map(artist =>{
+          return(
+            <li>{artist.name}</li>
+          )
+        })}</ul>
+
       </div>
     )
   }
