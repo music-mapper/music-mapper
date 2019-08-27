@@ -19,3 +19,4 @@ export default store
 export * from './songs'
 export * from './features'
 export * from './artists'
+export * from  './genres'

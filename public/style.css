@@ -100,13 +100,13 @@ form div {
   flex-direction: column;
   padding: 40px 0 0;
   right: auto;
-  height: 100vh;
+  height: 110vh;
   justify-content: flex-end;
   box-shadow: 10px 0 30px rgba(0,0,0,.05);
 }
 
 .app-content {
-  padding: 0 2em;
+  /* padding: 0 2em; */
 }
 
 .navigation-link {
@@ -132,7 +132,13 @@ form div {
   justify-content: flex-end;
 }
 
+
 #loading-box {
   display:flex;
   justify-content: center
+}
+
+.bar-chart-description {
+  width: 400;
+
 }
