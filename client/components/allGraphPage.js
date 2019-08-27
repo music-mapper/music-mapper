@@ -22,7 +22,7 @@ export default class AllGraphPage extends React.Component {
   render() {
     console.log(this.state)
 
-    //everytime the state changes, it removed the old graph so we can load the new one
+    //everytime the state changes, it removed the old graph so we can load the new one.  'svg' is inside the components
     d3.selectAll('svg > *').remove()
 
     return (<div className="app">
