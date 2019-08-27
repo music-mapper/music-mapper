@@ -14,6 +14,7 @@ router.get('/login', function(req, res) {
       response_type: 'code',
       client_id: process.env.SPOTIFY_CLIENT_ID,
       scope: 'user-library-read user-follow-read playlist-read-private',
+      show_dialog: true,
       redirect_uri
     }))
 })
