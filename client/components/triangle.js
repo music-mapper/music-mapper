@@ -2,7 +2,7 @@ import React from 'react'
 import * as d3 from 'd3'
 import {connect} from 'react-redux'
 import {gotAllFeatures} from '../store'
-
+import Loading from './Loading'
 
 
 export class Triangle extends React.Component{
@@ -232,8 +232,8 @@ node
 
   }
   render(){
-    if (this.props.features.data === undefined) {
-      return [];
+    if (this.props.features.length === 0) {
+      return (<Loading />);
     }
     return(
       <div id='triangle'> </div>

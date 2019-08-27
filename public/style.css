@@ -132,6 +132,13 @@ form div {
   justify-content: flex-end;
 }
 
+
+#loading-box {
+  display:flex;
+  justify-content: center
+}
+
 .bar-chart-description {
   width: 400;
+
 }
