@@ -106,9 +106,8 @@ form div {
 }
 
 .app-content {
-  /* padding: 0 2em; */
   width: 70%;
-  height: 110%;
+  /* height: 100%; */
 }
 
 .navigation-link {
@@ -126,7 +125,6 @@ form div {
 
 .navigation-link:hover {
   color: black;
-
 }
 
 #logout-button-container {
@@ -185,6 +183,22 @@ div.tooltip {
   padding-top: 30px;
 }
 
+.logo-container {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100px;
+  height: 100px;
+  color: black;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+
 #error-page{
   display: flex;
   flex-direction: column;
@@ -196,4 +210,5 @@ div.tooltip {
 #error-img{
 width: 500px;
 padding-left: 12em
+
 }
