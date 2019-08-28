@@ -16,9 +16,7 @@ class GenreMap extends React.Component{
     }
   }
 render(){
-  if (this.props.genres.length === 0){
-    return (<Loading />)
-  }
+
 
   return(<WordCloud
     data={this.props.genres.data}
