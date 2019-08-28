@@ -41,7 +41,7 @@ router.get('/callback', function(req, res) {
     // we want to send this access token back to store somewhere...
     // (TODO how will we store this for later use?)
     global.access_token = body.access_token
-    let uri = process.env.FRONTEND_URI || 'https://spotify-music-mapper.herokuapp.com'
+    let uri = process.env.FRONTEND_URI || 'https://spotify-music-mapper.herokuapp.com/app'
     res.redirect(uri) // could redirect you to "logged in"
   })
 })
