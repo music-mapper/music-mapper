@@ -131,16 +131,18 @@ class CollisionChart extends React.Component {
     })
   }
   render() {
-    // console.log('THIS IS MY DATASET ', this.props.lyrics.data)
-    if (this.props.lyrics.length === 0) {
+    let {loading} = this.props
+    if (loading) {
       return (<Loading />)
     }
+    console.log('this is the loading', loading)
     return (<div id='collision-chart'> </div>)
     // return <svg ref={node => (this.node = node)} width={0} height={0} />
   }
 }
 
 const mapStateToProps = state => ({
+  loading: state.songs.loading,
   lyrics: state.songs.lyrics
 })
 
