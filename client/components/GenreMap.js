@@ -24,6 +24,7 @@ render(){
     return []
   }
 
+
   return(<WordCloud
     data={this.props.genres.data}
     fontSizeMapper={fontSizeMapper}
