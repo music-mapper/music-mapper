@@ -100,13 +100,13 @@ form div {
   flex-direction: column;
   padding: 40px 0 0;
   right: auto;
-  height: auto;
+  height: 110vh;
   justify-content: flex-end;
-  box-shadow: 10px 0 30px rgba(0,0,0,.05)
+  box-shadow: 10px 0 30px rgba(0,0,0,.05);
 }
 
 .app-content {
-  padding: 0 2em;
+  /* padding: 0 2em; */
 }
 
 .navigation-link {
@@ -118,4 +118,27 @@ form div {
   flex-direction: column;
   width: 100px;
   height: 100px;
+  cursor: pointer;
+  color: rgba(56, 51, 75, 0.45);
+}
+
+.navigation-link:hover {
+  color: black;
+
+}
+
+#logout-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+#loading-box {
+  display:flex;
+  justify-content: center
+}
+
+.bar-chart-description {
+  width: 400;
+
 }
