@@ -25,10 +25,21 @@ export class Triangle extends React.Component{
  addCoordinatesToData () {
   const xCoords = [225,110,340,0,225,450];
   const yCoords = [0,200,200,400,400,400];
-    for (let i = 0; i < xCoords.length; i++){
-    this.props.features.data[i].xPosition = xCoords[i]
-    this.props.features.data[i].yPosition = yCoords[i]
-    }
+
+  const descriptions = {
+    'Liveness': 'Detects the presence of an audience in the recording',
+    'Acousticness': 'An average across all your tracks of Spotify\'s confidence measure of whether the track is acoustic',
+    'Valence': 'A measure describing the musical positiveness: high valence sound more happy, tracks with low valence sound more sad',
+    'Danceability': 'Describes how danceable a track is based on tempo, rhythm stability, beat strength, and overall regularity',
+    'Energy': 'Represents a measure of intensity and activity—energetic tracks feel fast, loud, and noisy',
+    'Speechiness': 'Detects the presence of spoken words'
+  }
+
+  for (let i = 0; i < xCoords.length; i++){
+      this.props.features.data[i].xPosition = xCoords[i]
+      this.props.features.data[i].yPosition = yCoords[i]
+      this.props.features.data[i].description = descriptions[this.props.features.data[i].Name]
+  }
     return this.props.features.data
   }
 
@@ -39,7 +50,7 @@ export class Triangle extends React.Component{
     const dataset = {
       children: this.addCoordinatesToData()
         // top row
-        // {Name: 'Liveness', Count: 49, xPosition: 225, yPosition: 0},
+        // {Name: 'Liveness', Count: 49, xPosition: 225, yPosition: 0, hoverText: 'This is liveliness'},
 
         // middle row
         // {Name: 'Acousticness', Count: 90, xPosition: 110, yPosition: 200},
@@ -50,6 +61,7 @@ export class Triangle extends React.Component{
         // {Name: 'Energy', Count: 40, xPosition: 225, yPosition: 400},
         // {Name: 'Speechiness', Count: 27, xPosition: 450, yPosition:400},
     }
+
     // Set the overall diameter for the chart in pixels
 const diameter = 700
 // Set a color scale to use when coloring in the different nodes in the chart
@@ -66,6 +78,11 @@ const svg = d3
   .attr('width', diameter)
   .attr('height', diameter)
   .attr('class', 'bubble')
+
+// Create a div element to use for hovertext
+let div = d3.select('#triangle').append('div')
+  .attr('class', 'tooltip')
+  .style('opacity', 0);
 
 // Define the hierarchy of the nodes?
 const nodes = d3.hierarchy(dataset).sum(function(d) {
@@ -167,7 +184,21 @@ ellipse
 .style("fill", function(d) {
   return `url(#${d.data.Name})`
 })
-
+.on("mouseover", function(d) {
+  div.transition()
+      .duration(200)
+      .style("opacity", .9);
+  div.html(d.data.description)
+      .style("left", (d3.event.pageX) + "px")
+      // .style('left', (d.data.xPosition) + 'px')
+      // .style('top', (d.data.yPosition) + 'px')
+      .style("top", (d3.event.pageY - 28) + "px");
+  })
+.on("mouseout", function(d) {
+    div.transition()
+        .duration(500)
+        .style("opacity", 0);
+})
 .attr('stroke-lincap', 'butt')
 .attr('stroke-line-join', 'miter')
 

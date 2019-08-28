@@ -110,10 +110,9 @@ class BarChart extends React.Component {
   render() {
     return (
       <div>
-        <div id="my_dataviz" />
+        <div id="my_dataviz"></div>
         <div id="bar-chart-description">
         <p>
-          {' '}
           This chart displays the frequency of appearances of musical artists
           within your library. This is based on tracks pulled from your saved
           albums and songs, so you may notice that artists whose entire albums
