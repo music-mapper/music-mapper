@@ -3,11 +3,15 @@ import * as d3 from 'd3'
 import {gotAllLyrics} from '../store'
 import {connect} from 'react-redux'
 import Loading from './Loading'
+import ErrorPage from './error'
 
 
 class CollisionChart extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      showError: false
+    }
     this.createBubbleGraph = this.createBubbleGraph.bind(this)
   }
   async componentDidMount() {
@@ -15,7 +19,9 @@ class CollisionChart extends React.Component {
       await this.props.gotAllLyrics()
       this.createBubbleGraph()
     } catch (error) {
-      console.log('error in component did mount', error)
+      this.setState({
+        showError: true
+      })
     }
   }
   createBubbleGraph() {
@@ -135,7 +141,9 @@ class CollisionChart extends React.Component {
     if (loading) {
       return (<Loading/>)
     }
-    console.log('this is the loading', loading)
+    else if (this.state.showError === true){
+      return (<ErrorPage />)
+    }
     return (<div id='collision-chart'> </div>)
     // return <svg ref={node => (this.node = node)} width={0} height={0} />
   }
