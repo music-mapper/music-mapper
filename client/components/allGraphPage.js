@@ -31,6 +31,10 @@ export default class AllGraphPage extends React.Component {
         <div className="app-navigation">
           {/* anchor buttons inside navigation bar */}
 
+            <span className='logo-container'>
+              <img className='logo' src='https://morganfeir.s3.us-east-2.amazonaws.com/images/music-mapper-logo.png'/>
+            </span>
+
           <a onClick={() => this.setState({ currentChart: 'CollisionChart' })} className="navigation-link">
             <span className="nav-icon">
               <i className="fa fa-file-text-o" aria-hidden="true" />
@@ -80,9 +84,6 @@ export default class AllGraphPage extends React.Component {
             </span>
             <span className="nav-label">Logout</span>
           </a>
-
-
-
 
         </div>
 
