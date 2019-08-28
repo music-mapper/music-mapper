@@ -10,10 +10,12 @@ Graph Libraries used:
 Notes:
 * Each API call from Spotify API only gives us 20 items (ie. Albums, Songs, Artist, Tracks)
 * Each API call from Musixmatch only gives us the first 30% of lyrics
+* The Musixmatch api open-soure plan allows 2000 Api Calls per day and 500 Lyrics displays per day. After we've reached these limits we'll receive a 401 Error, and must sign-up for a new api key
 * MusicMatch API is limited in understanding other languages.
   - For example, Spanish and Korean songs are okay.
   - For example, Ukranian and Chinese songs will not work in our application
 * For our lyrical graphs, we filtered for common non-descriptive words (such as 'THE', 'AND', 'THIS', 'A', 'THAT', 'OF', 'BUT', 'IS', 'FOR', 'TO', 'WAS', 'IT', 'ON', 'IT'S', 'IN', 'MY', 'WITH', 'THAT'S', 'I'M', 'ARE', 'AT', 'IF')
+
 
 
 

@@ -3,20 +3,24 @@ import axios from 'axios'
 /**
  * ACTION TYPES
  */
+const GETTING_ARTIST_FREQ = 'GETTING_ARTIST_FREQ'
 const GET_ARTISTS_FREQ = 'GET_ARTISTS_FREQ'
 
 /**
  * INITIAL STATE
  */
-const artists = {
+const initialState = {
   frequency: [],
-  popularity: []
+  popularity: [],
+  loading: false
 }
 
 /**
  * ACTION CREATORS
  */
-
+const gettingArtistFreq = () => ({
+  type: GETTING_ARTIST_FREQ
+})
 const getArtistsFreq = (data) => ({
   type: GET_ARTISTS_FREQ,
   data
@@ -28,6 +32,7 @@ const getArtistsFreq = (data) => ({
 
 export const gotArtistsFreq = () => async dispatch => {
   try {
+    dispatch(gettingArtistFreq())
     const { data } = await axios.get('/api/artistsFreq')
     dispatch(getArtistsFreq(data))
   } catch (err) {
@@ -39,10 +44,12 @@ export const gotArtistsFreq = () => async dispatch => {
 /**
  * REDUCER
  */
-export default function (state = artists, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
+    case GETTING_ARTIST_FREQ:
+        return {...state, loading: true}
     case GET_ARTISTS_FREQ:
-      return {...state, frequency: action.data}
+      return {...state, loading: false, frequency: action.data}
     default:
       return state
   }

@@ -3,6 +3,7 @@ import CollisionChart from './collisionChart'
 import BarChart from './barChart'
 import Triangle from './triangle'
 import GenreMap from './GenreMap'
+import ViewData from './viewData'
 import * as d3 from 'd3'
 
 
@@ -63,13 +64,25 @@ export default class AllGraphPage extends React.Component {
           </a>
 
 
+          <a onClick={() => this.setState({
+            currentChart: 'ViewData'
+          })} className="navigation-link">
+            <span className="nav-icon">
+              <i class="fa fa-info" aria-hidden="true"></i>
+            </span>
+            <span className="nav-label">My Data</span>
+          </a>
+
 
           <a onClick={() => this.logout()} className="navigation-link">
             <span className="nav-icon">
-            <i class="fa fa-sign-in" aria-hidden="true"></i>
+              <i class="fa fa-sign-in" aria-hidden="true"></i>
             </span>
             <span className="nav-label">Logout</span>
           </a>
+
+
+
 
         </div>
 
@@ -84,6 +97,8 @@ export default class AllGraphPage extends React.Component {
           {this.state.currentChart === 'BarChart' && <BarChart />}
 
           {this.state.currentChart === 'CollisionChart' && <CollisionChart />}
+
+          {this.state.currentChart === 'ViewData' && <ViewData />}
 
         </div>
       </div>
