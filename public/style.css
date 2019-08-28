@@ -107,6 +107,8 @@ form div {
 
 .app-content {
   /* padding: 0 2em; */
+  width: 70%;
+  height: 110%;
 }
 
 .navigation-link {
@@ -132,11 +134,11 @@ form div {
   justify-content: flex-end;
 }
 
-
+/*
 #loading-box {
   display:flex;
   justify-content: center
-}
+} */
 
 #bar-chart-description {
   width: 100;
@@ -152,4 +154,9 @@ div.tooltip {
   border: 0px;
   border-radius: 8px;
   pointer-events: none;
+}
+
+#view-data {
+  padding-left: 30px;
+  padding-top: 30px;
 }
