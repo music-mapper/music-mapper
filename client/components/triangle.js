@@ -263,8 +263,9 @@ node
 
   }
   render(){
-    if (this.props.features.length === 0) {
-      return (<Loading />);
+    let {loading} = this.props
+    if (loading) {
+      return <Loading />
     }
     return(
       <div id='triangle'> </div>
@@ -275,6 +276,7 @@ node
 }
 
 const mapStateToProps = (state) => ({
+  loading: state.audioFeatures.loading,
   features: state.audioFeatures.features
 })
 

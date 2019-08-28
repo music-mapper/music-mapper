@@ -16,6 +16,13 @@ class GenreMap extends React.Component{
     }
   }
 render(){
+  let {loading} = this.props
+  if (loading){
+    return <Loading />
+  }
+  if (this.props.genres.data === undefined){
+    return []
+  }
 
 
   return(<WordCloud
@@ -26,6 +33,7 @@ render(){
 }}
 
 const mapStatetoProps = (state) => ({
+  loading: state.genres.loading,
   genres: state.genres.genres
 })
 
