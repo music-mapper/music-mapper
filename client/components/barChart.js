@@ -2,6 +2,7 @@ import React from 'react'
 import * as d3 from 'd3'
 import {connect} from 'react-redux'
 import {gotArtistsFreq} from '../store'
+import Loading from './Loading'
 
 class BarChart extends React.Component {
   async componentDidMount() {
@@ -108,6 +109,10 @@ class BarChart extends React.Component {
       })
   }
   render() {
+    let {loading} = this.props
+    if (loading){
+      return <Loading />
+    }
     return (
       <div>
         <div id="my_dataviz"></div>
@@ -126,6 +131,7 @@ class BarChart extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  loading: state.artists.loading,
   frequency: state.artists.frequency
 })
 
