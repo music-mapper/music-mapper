@@ -134,12 +134,6 @@ form div {
   justify-content: flex-end;
 }
 
-/*
-#loading-box {
-  display:flex;
-  justify-content: center
-} */
-
 #bar-chart-description {
   width: 100;
 }
@@ -158,5 +152,35 @@ div.tooltip {
 
 #view-data {
   padding-left: 30px;
+  padding-top: 50px;
+}
+
+#heading-one{
+  color: #66C2A5;
+}
+
+#heading-two{
+  color: #F28C61;
+}
+
+#heading-three{
+  color: #8DA0CB;
+}
+
+#heading-four{
+  color: #E78AC3;
+}
+
+#heading-five{
+  color: #A6D854;
+}
+
+#triangle {
+ padding-left: 20px;
+ padding-top: 30px;
+}
+
+#bar-chart{
+  padding-left: 20px;
   padding-top: 30px;
 }
