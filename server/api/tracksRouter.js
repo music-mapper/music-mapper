@@ -1,20 +1,16 @@
 const router = require('express').Router()
 let request = require('request')
-// let querystring = require('querystring')
 module.exports = router
-var rp = require('request-promise')
+const rp = require('request-promise')
 
-
-// this is assuming that "access_token" is available as a global variable!!
-// global.access_token
 
 router.get('/', async function(req, res, next) {
-  var trackInfo = []
+ let trackInfo = []
   let concatArr = []
   let wordCounter = {}
 
   console.log(`Access token is ${global.access_token}`)
-  var options = {
+ let options = {
     url: 'https://api.spotify.com/v1/me/tracks',
     headers: {
       Authorization: 'Bearer ' + global.access_token,
@@ -32,10 +28,12 @@ router.get('/', async function(req, res, next) {
           name: song.track.name
         })
       )
+
+      // let api = "654dda63f72f77a4ef2567f1f064cba2"
         for (let i = 0; i < trackInfo.length; i++){
           const q_artist =  trackInfo[i].artist
           const q_track = trackInfo[i].name
-          var lyricsOptions = {url: `https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?q_track=${q_track}&q_artist=${q_artist}&apikey=${process.env.api_key}`,
+         let lyricsOptions = {url: `https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?q_track=${q_track}&q_artist=${q_artist}&apikey=${process.env.api_key}`,
           json: true}
           const lyrics = await rp(lyricsOptions)
           const rawData = lyrics.message.body.lyrics.lyrics_body.toUpperCase()
@@ -51,7 +49,7 @@ router.get('/', async function(req, res, next) {
         })
         let outputData = []
 
-        let badWords = ['THE', 'AND', 'THIS', 'A', 'THAT', 'OF', 'BUT', 'IS', 'FOR', 'TO', 'WAS', 'IT', 'ON', `IT'S`, 'IN', 'MY', 'WITH', 'THAT\'S', 'I\'M', 'ARE', 'AT', 'IF']
+        let badWords = ['THE', 'AND', 'THIS', 'A', 'THAT', 'OF', 'BUT', 'IS', 'FOR', 'TO', 'WAS', 'IT', 'ON', `IT'S`, 'IN', 'MY', 'WITH', 'THAT\'S', 'I\'M', 'ARE', 'AT', 'IF', 'I', 'YOU', 'ME']
 
           for (let key in wordCounter) {
           if (!badWords.includes(key))

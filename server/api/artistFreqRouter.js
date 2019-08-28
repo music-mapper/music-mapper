@@ -1,18 +1,18 @@
 const router = require('express').Router()
-var rp = require('request-promise')
+const rp = require('request-promise')
 module.exports = router
 
 
 router.get('/', async function(req, res) {
   console.log(`Access token is ${global.access_token}`)
-  var options = {
+  let options = {
     url: 'https://api.spotify.com/v1/me/tracks',
     headers: {Authorization: 'Bearer ' + global.access_token},
     json: true
   }
   // use the access token to access the Spotify Web API
 
-
+try{
   const artists = {}
 
   const response = await rp(options)
@@ -26,7 +26,7 @@ router.get('/', async function(req, res) {
     }
   }
 
-  var options2 = {
+  let options2 = {
     url: 'https://api.spotify.com/v1/me/albums',
     headers: {Authorization: 'Bearer ' + global.access_token},
     json: true
@@ -51,6 +51,9 @@ router.get('/', async function(req, res) {
   }
 
   res.send(readyForTreeTable)
+} catch(error){
+  console.log('error in the artistFreqRouter', error)
+}
 })
 
 

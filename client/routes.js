@@ -6,6 +6,7 @@ import GenreMap from './components/GenreMap'
 import Triangle from './components/triangle';
 import BarChart from './components/barChart';
 import AllGraphsPage from './components/allGraphPage'
+import viewData from './components/viewData';
 /**
  * COMPONENT
  */
@@ -24,6 +25,7 @@ class Routes extends Component {
         {/* Displays our Login component as a fallback */}
         <Route path="/features" component={Triangle} />
         <Route path= '/app' component={AllGraphsPage}/>
+        <Route path ='/data' component={viewData} />
 
         <Route component={Login} />
       </Switch>

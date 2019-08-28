@@ -31,9 +31,7 @@ const getFeatures = (data) => ({
 
 export const gotAllFeatures = () => async dispatch => {
   try {
-    console.log('GETTING DATA')
     const data = await axios.get('/api/features')
-    console.log('this is data in thunk', data)
     dispatch(getFeatures(data))
   } catch (err) {
     console.error(err)
