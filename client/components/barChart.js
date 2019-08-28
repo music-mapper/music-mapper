@@ -20,7 +20,7 @@ class BarChart extends React.Component {
       return a.value - b.value
     })
 
-    const margin = {top: 30, right: 40, bottom: 160, left: 80},
+    const margin = {top: 30, right: 40, bottom: 170, left: 90},
       width = 800 - margin.left - margin.right,
       height = 600 - margin.top - margin.bottom
 
@@ -32,6 +32,26 @@ class BarChart extends React.Component {
       .attr('height', height + margin.top + margin.bottom)
       .append('g')
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+
+      // Create a div element to use for hovertext
+      let div = d3.select('#my_dataviz').append('div')
+      .attr('class', 'tooltip')
+      .style('opacity', 0);
+
+      // Add the mouseover function
+      svg.on('mouseover', function(d) {
+        div.transition()
+            .duration(200)
+            .style('opacity', .9);
+        div.html('These bars represent how frequently musical artists appear within your library, based on tracks pulled from your saved albums and songs')
+            .style('left', (d3.event.pageX) + 'px')
+            .style('top', (d3.event.pageY - 28) + 'px');
+        })
+      .on('mouseout', function(d) {
+          div.transition()
+              .duration(500)
+              .style('opacity', 0);
+      })
 
     // X axis
     const x = d3
@@ -111,15 +131,6 @@ class BarChart extends React.Component {
     return (
       <div>
         <div id="my_dataviz"></div>
-        <div id="bar-chart-description">
-        <p>
-          This chart displays the frequency of appearances of musical artists
-          within your library. This is based on tracks pulled from your saved
-          albums and songs, so you may notice that artists whose entire albums
-          you have saved have a much higher frequency than those with single
-          songs.
-        </p>
-        </div>
       </div>
     )
   }
