@@ -1,9 +1,9 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {gotAllFeatures, gotArtistsFreq, gotAllLyrics, gotAllGenres} from '../store'
+import { connect } from 'react-redux'
+import { gotAllFeatures, gotArtistsFreq, gotAllLyrics, gotAllGenres } from '../store'
 
-class ViewData extends React.Component{
-  async componentDidMount(){
+class ViewData extends React.Component {
+  async componentDidMount() {
     try {
       await this.props.gotAllFeatures()
       await this.props.gotAllGenres()
@@ -17,21 +17,38 @@ class ViewData extends React.Component{
 
   }
 
-  render(){
-    let {frequency, genres, features} = this.props
-    if (frequency === undefined){
+  render() {
+    let { frequency, genres, features } = this.props
+    if (frequency === undefined) {
       return []
     }
     console.log('genres: ', genres)
     console.log('features: ', features)
-    return(
-      <div>
-        <h4>These are the artists saved in your tracks and albums which we used to create your bar chart: </h4>
-        <ul>{frequency.map(artist =>{
-          return(
-            <li>{artist.name}</li>
-          )
-        })}</ul>
+    return (
+      <div id ='view-data'>
+        <h1> What data are the graphs contructed with?</h1>
+
+        <h3> Lyrics Chart: </h3>
+        <ul>
+          <li>The first 20 songs from your Spotify library </li>
+          <li>The first 30% of the lyrics from those 20 songs </li>
+        </ul>
+
+        <h3> Features Chart: </h3>
+        <ul>
+          <li>The first 20 songs from your Spotify library </li>
+        </ul>
+
+        <h3> Genres Chart: </h3>
+        <ul>
+          <li>The first 20 Albums from your Spotify library </li>
+        </ul>
+
+
+        <h3> Artists Chart: </h3>
+        <ul>
+          <li>The first 20 songs and first 20 albums from your Spotify library </li>
+        </ul>
 
       </div>
     )
@@ -39,10 +56,10 @@ class ViewData extends React.Component{
 }
 
 const mapStateToProps = state => ({
-frequency: state.artists.frequency,
-lyrics: state.songs.lyrics,
-genres: state.genres.genres,
-features: state.audioFeatures.features
+  frequency: state.artists.frequency,
+  lyrics: state.songs.lyrics,
+  genres: state.genres.genres,
+  features: state.audioFeatures.features
 })
 
 const mapDispatchToProps = dispatch => ({
