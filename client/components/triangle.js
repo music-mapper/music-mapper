@@ -65,7 +65,7 @@ export class Triangle extends React.Component{
     // Set the overall diameter for the chart in pixels
 const diameter = 700
 // Set a color scale to use when coloring in the different nodes in the chart
-const color = d3.scaleOrdinal(d3.schemeAccent)
+const color = d3.scaleOrdinal(d3.schemeSet2)
 // Load the data with the d3.pack() function to put it in a suitable form for bubble chart
 const bubble = d3
   .pack(dataset)

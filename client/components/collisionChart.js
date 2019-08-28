@@ -36,7 +36,7 @@ class CollisionChart extends React.Component {
 
     // Set a color scale to use when coloring in the different nodes in the chart
     // const color = d3.scaleOrdinal(d3.schemeAccent)
-    const color = d3.scaleOrdinal(d3.schemeCategory10)
+    const color = d3.scaleOrdinal(d3.schemeSet2)
 
 
     root.radius = 0
@@ -79,7 +79,7 @@ class CollisionChart extends React.Component {
         return d.r
       })
       .style('fill', function(d, i) {
-        return color(i % 3)
+        return color(i)
       })
 
       let label = svg
@@ -133,7 +133,7 @@ class CollisionChart extends React.Component {
   render() {
     let {loading} = this.props
     if (loading) {
-      return (<Loading />)
+      return (<Loading/>)
     }
     console.log('this is the loading', loading)
     return (<div id='collision-chart'> </div>)
