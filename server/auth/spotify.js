@@ -44,6 +44,8 @@ router.get('/callback', function(req, res) {
     global.access_token = body.access_token
     let uri = process.env.FRONTEND_URI || 'http://localhost:8888/app'
     // let uri = process.env.FRONTEND_URI || 'https://spotify-music-mapper.herokuapp.com/app'
+
+  
     res.redirect(uri) // could redirect you to "logged in"
   })
 })
