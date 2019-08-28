@@ -150,7 +150,7 @@ div.tooltip {
 
 #view-data {
   padding-left: 30px;
-  padding-top: 50px;
+  padding-top: 90px;
 }
 
 #heading-one{
@@ -198,7 +198,7 @@ div.tooltip {
 .logo {
   width: 80px;
   height: 80px;
-
+}
 #error-page{
   display: flex;
   flex-direction: column;

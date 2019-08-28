@@ -28,26 +28,34 @@ class ViewData extends React.Component {
       <div id ='view-data'>
         <h1 id='heading-one'> With what data are the graphs contructed with?</h1>
 
-        <h3 id='heading-two'> Lyrics Chart: </h3>
+        <h2 id='heading-two'> Lyrics Chart: </h2>
         <ul>
+          <h3>
           <li>The first 20 saved songs from your Spotify library </li>
           <li>The first 30% of the lyrics from those 20 songs </li>
+          </h3>
         </ul>
 
-        <h3 id='heading-three'> Features Chart: </h3>
+        <h2 id='heading-three'> Features Chart: </h2>
         <ul>
+         < h3>
           <li>The first 20 saved songs from your Spotify library </li>
+          </h3>
         </ul>
 
-        <h3 id= 'heading-four'> Genres Chart: </h3>
+        <h2 id= 'heading-four'> Genres Chart: </h2>
         <ul>
+          <h3>
           <li>The first 20 saved Albums from your Spotify library </li>
+          </h3>
         </ul>
 
 
-        <h3 id='heading-five'> Artists Chart: </h3>
+        <h2 id='heading-five'> Artists Chart: </h2>
         <ul>
+          <h3>
           <li>The first 20 saved songs and first 20 albums from your Spotify library </li>
+          </h3>
         </ul>
 
 
