@@ -36,7 +36,7 @@ export const gotAllLyrics = () => async dispatch => {
     const data = await axios.get('/api/tracks')
     dispatch(getLyrics(data))
   } catch (err) {
-    console.error(err)
+    console.error('here it is:', err)
   }
 }
 
