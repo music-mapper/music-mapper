@@ -160,3 +160,16 @@ div.tooltip {
   padding-left: 30px;
   padding-top: 30px;
 }
+
+#error-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  padding-left: 2em
+}
+#error-img{
+width: 500px;
+padding-left: 12em
+}

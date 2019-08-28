@@ -62,7 +62,7 @@ router.get('/', async function(req, res, next) {
 
   }
     catch(error) {
-      console.log('failed', error)
+      res.json(error)
     }
 
 })
