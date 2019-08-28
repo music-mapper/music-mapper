@@ -27,7 +27,7 @@ class BarChart extends React.Component {
 
     // append the svg object to the body of the page
     const svg = d3
-      .select('#my_dataviz')
+      .select('#bar-chart')
       .append('svg')
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom)
@@ -35,7 +35,7 @@ class BarChart extends React.Component {
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
       // Create a div element to use for hovertext
-      let div = d3.select('#my_dataviz').append('div')
+      let div = d3.select('#bar-chart').append('div')
       .attr('class', 'tooltip')
       .style('opacity', 0);
 
@@ -135,7 +135,7 @@ class BarChart extends React.Component {
     }
     return (
       <div>
-        <div id="my_dataviz"></div>
+        <div id="bar-chart"/>
       </div>
     )
   }

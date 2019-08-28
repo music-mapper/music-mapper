@@ -71,6 +71,8 @@ const bubble = d3
   .pack(dataset)
   .size([diameter, diameter])
   .padding(1.5)
+
+
 // Select the div, add a svg, and modify the svg to set up the canvas for chart
 const svg = d3
   .select('#triangle')
