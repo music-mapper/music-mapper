@@ -6,7 +6,6 @@ import GenreMap from './GenreMap'
 import ViewData from './viewData'
 import * as d3 from 'd3'
 
-
 export default class AllGraphPage extends React.Component {
   constructor() {
     super()
@@ -19,7 +18,7 @@ export default class AllGraphPage extends React.Component {
     await setTimeout(() => spotifyLogoutWindow.close(), 2000)
     window.open('https://www.facebook.com','width=700,height=500,top=40,left=40')
     window.location.replace('http://localhost:8888')
-    // window.location.replace('https://spotify-music-mapper.herokuapp.com')
+
   }
   async logout() {
     const url = 'https://www.spotify.com/logout/'
@@ -81,7 +80,7 @@ export default class AllGraphPage extends React.Component {
             currentChart: 'ViewData'
           })} className="navigation-link">
             <span className="nav-icon">
-              <i class="fa fa-info" aria-hidden="true"></i>
+              <i className="fa fa-info" aria-hidden="true"></i>
             </span>
             <span className="nav-label">My Data</span>
           </a>
@@ -89,16 +88,16 @@ export default class AllGraphPage extends React.Component {
 
           <a onClick={() => this.logout()} className="navigation-link">
             <span className="nav-icon">
-              <i class="fa fa-sign-in" aria-hidden="true"></i>
+              <i className="fa fa-sign-in" aria-hidden="true"></i>
             </span>
             <span className="nav-label">Logout</span>
           </a>
 
              <a onClick={() => this.fblogout()} className="navigation-link">
             <span className="nav-icon">
-              <i class="fa fa-sign-in" aria-hidden="true"></i>
+              <i className="fa fa-sign-in" aria-hidden="true"></i>
             </span>
-            <span className="nav-label">Facebook Logout</span>
+            <span className="nav-label">Facebook <br/><center>Logout</center></span>
           </a>
         </div>
 
