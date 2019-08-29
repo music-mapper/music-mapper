@@ -5,7 +5,6 @@ import Triangle from './triangle'
 import GenreMap from './GenreMap'
 import ViewData from './viewData'
 import * as d3 from 'd3'
-import axios from 'axios'
 
 export default class AllGraphPage extends React.Component {
   constructor() {
@@ -15,12 +14,11 @@ export default class AllGraphPage extends React.Component {
 
   async fblogout() {
     const url = 'https://www.spotify.com/logout/'
-    // axios.get('https://www.spotify.com/logout/')
     const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40')
     await setTimeout(() => spotifyLogoutWindow.close(), 2000)
     window.open('https://www.facebook.com','width=700,height=500,top=40,left=40')
     window.location.replace('http://localhost:8888')
-    // window.location.replace('https://spotify-music-mapper.herokuapp.com')
+
   }
   async logout() {
     const url = 'https://www.spotify.com/logout/'
