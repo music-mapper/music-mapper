@@ -12,10 +12,10 @@ export default class AllGraphPage extends React.Component {
     this.state = { currentChart: 'CollisionChart' }
   }
 
-  async fblogout() {
+ fblogout() {
     const url = 'https://www.spotify.com/logout/'
     const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40')
-    await setTimeout(() => spotifyLogoutWindow.close(), 2000)
+
     const url2 = 'https://www.facebook.com/'
     window.open(url2, 'facebook logout', 'width=700,height=500,top=40,left=40')
     window.location.replace('https://spotify-music-mapper.herokuapp.com')
