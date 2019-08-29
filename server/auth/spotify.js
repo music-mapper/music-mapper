@@ -2,6 +2,9 @@ const router = require('express').Router()
 let request = require('request')
 let querystring = require('querystring')
 module.exports = router
+const session = require('express-session')
+const express = require('express')
+const app = express()
 
 let redirect_uri =
   process.env.REDIRECT_URI || 'http://localhost:8888/auth/spotify/callback'
@@ -41,11 +44,11 @@ router.get('/callback', function(req, res) {
 
     // we want to send this access token back to store somewhere...
     // (TODO how will we store this for later use?)
-    global.access_token = body.access_token
+    req.session.access_token = body.access_token
     let uri = process.env.FRONTEND_URI || 'http://localhost:8888/app'
     // let uri = process.env.FRONTEND_URI || 'https://spotify-music-mapper.herokuapp.com/app'
 
-  
+
     res.redirect(uri) // could redirect you to "logged in"
   })
 })

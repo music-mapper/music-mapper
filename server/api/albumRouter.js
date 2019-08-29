@@ -8,11 +8,11 @@ router.get('/', async function(req, res) {
   let trackInfo = []
   let returnArr = []
   let counter = {}
-  console.log(`Access token is ${global.access_token}`)
+  console.log(`Access token is ${req.session.access_token}`)
   let options = {
     url: 'https://api.spotify.com/v1/me/albums',
     headers: {
-      Authorization: 'Bearer ' + global.access_token,
+      Authorization: 'Bearer ' + req.session.access_token,
       'User-Agent': 'Request-Promise'
     },
     json: true
@@ -31,7 +31,7 @@ router.get('/', async function(req, res) {
       let newOptions = {
         url: `https://api.spotify.com/v1/artists/${id}`,
         headers: {
-          Authorization: 'Bearer ' + global.access_token,
+          Authorization: 'Bearer ' + req.session.access_token,
           'User-Agent': 'Request-Promise'
         },
         json: true
