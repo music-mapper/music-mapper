@@ -5,7 +5,7 @@ module.exports = router
 router.get('/', async function(req, res, next) {
   let options = {
     url: 'https://api.spotify.com/v1/me/tracks',
-    headers: {Authorization: 'Bearer ' + global.access_token},
+    headers: {Authorization: 'Bearer ' + req.session.access_token},
     json: true
   }
 
@@ -25,7 +25,7 @@ router.get('/', async function(req, res, next) {
 
       let newOptions = {
         url: `https://api.spotify.com/v1/audio-features?ids=${id}`,
-        headers: {Authorization: 'Bearer ' + global.access_token},
+        headers: {Authorization: 'Bearer ' + req.session.access_token},
         json: true
       }
 

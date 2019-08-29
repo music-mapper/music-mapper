@@ -9,11 +9,11 @@ router.get('/', async function(req, res, next) {
   let concatArr = []
   let wordCounter = {}
 
-  console.log(`Access token is ${global.access_token}`)
+  console.log(`Access token is ${req.session.access_token}`)
  let options = {
     url: 'https://api.spotify.com/v1/me/tracks',
     headers: {
-      Authorization: 'Bearer ' + global.access_token,
+      Authorization: 'Bearer ' + req.session.access_token,
       'User-Agent': 'Request-Promise'
     },
     json: true
