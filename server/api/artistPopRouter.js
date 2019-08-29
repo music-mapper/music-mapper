@@ -6,10 +6,10 @@ module.exports = router
 // global.access_token
 
 router.get('/', async function(req, res) {
-  console.log(`Access token is ${global.access_token}`)
+  console.log(`Access token is ${req.session.access_token}`)
   let options = {
     url: 'https://api.spotify.com/v1/me/following?type=artist',
-    headers: {Authorization: 'Bearer ' + global.access_token},
+    headers: {Authorization: 'Bearer ' + req.session.access_token},
     json: true
   }
   // use the access token to access the Spotify Web API

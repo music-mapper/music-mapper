@@ -3,7 +3,6 @@ const express = require('express')
 const morgan = require('morgan')
 const compression = require('compression')
 const session = require('express-session')
-// const passport = require('passport')
 const PORT = process.env.PORT || 8888
 const app = express()
 const socketio = require('socket.io')
@@ -48,17 +47,15 @@ const createApp = () => {
   // compression middleware
   app.use(compression())
 
-  // session middleware with passport
-  // app.use(
-  //   session({
-  //     secret: process.env.SESSION_SECRET || 'my best friend is Cody',
-  //     // store: sessionStore,
-  //     resave: false,
-  //     saveUninitialized: false
-  //   })
-  // )
-  // app.use(passport.initialize())
-  // app.use(passport.session())
+  //session middleware with passport
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET || 'my best friend is Cody',
+      // store: sessionStore,
+      resave: false,
+      saveUninitialized: false
+    })
+  )
 
   // auth and api routes
   app.use('/auth', require('./auth'))
