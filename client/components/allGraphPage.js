@@ -82,7 +82,7 @@ export default class AllGraphPage extends React.Component {
             currentChart: 'ViewData'
           })} className="navigation-link">
             <span className="nav-icon">
-              <i class="fa fa-info" aria-hidden="true"></i>
+              <i className="fa fa-info" aria-hidden="true"></i>
             </span>
             <span className="nav-label">My Data</span>
           </a>
@@ -99,7 +99,7 @@ export default class AllGraphPage extends React.Component {
             <span className="nav-icon">
               <i className="fa fa-sign-in" aria-hidden="true"></i>
             </span>
-            <span className="nav-label">Facebook Logout</span>
+            <span className="nav-label">Facebook <br/><center>Logout</center></span>
           </a>
         </div>
 
