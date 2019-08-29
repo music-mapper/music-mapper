@@ -13,6 +13,14 @@ export default class AllGraphPage extends React.Component {
     this.state = { currentChart: 'CollisionChart' }
   }
 
+  async fblogout() {
+    const url = 'https://www.spotify.com/logout/'
+    const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40')
+    await setTimeout(() => spotifyLogoutWindow.close(), 2000)
+    window.open('https://www.facebook.com','width=700,height=500,top=40,left=40')
+    window.location.replace('http://localhost:8888')
+    // window.location.replace('https://spotify-music-mapper.herokuapp.com')
+  }
   async logout() {
     const url = 'https://www.spotify.com/logout/'
     const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40')
@@ -86,6 +94,12 @@ export default class AllGraphPage extends React.Component {
             <span className="nav-label">Logout</span>
           </a>
 
+             <a onClick={() => this.fblogout()} className="navigation-link">
+            <span className="nav-icon">
+              <i class="fa fa-sign-in" aria-hidden="true"></i>
+            </span>
+            <span className="nav-label">Facebook Logout</span>
+          </a>
         </div>
 
         <div className="app-content">
