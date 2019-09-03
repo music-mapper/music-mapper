@@ -44,13 +44,13 @@ try{
     }
   }
 
-  const readyForTreeTable = []
+  const readyForBarChart = []
 
   for (let key in artists) {
-    readyForTreeTable.push({name: key, value: artists[key] })
+    readyForBarChart.push({name: key, value: artists[key] })
   }
 
-  res.send(readyForTreeTable)
+  res.send(readyForBarChart)
 } catch(error){
   console.log('error in the artistFreqRouter', error)
 }

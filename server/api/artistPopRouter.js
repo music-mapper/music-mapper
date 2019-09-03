@@ -14,7 +14,6 @@ router.get('/', async function(req, res) {
   }
   // use the access token to access the Spotify Web API
   const response = await rp(options)
-  console.log(response.artists.items)
     res.send(response.artists.items)
 })
 

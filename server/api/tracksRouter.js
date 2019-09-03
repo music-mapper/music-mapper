@@ -1,5 +1,4 @@
 const router = require('express').Router()
-let request = require('request')
 module.exports = router
 const rp = require('request-promise')
 
