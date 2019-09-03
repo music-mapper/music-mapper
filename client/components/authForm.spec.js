@@ -25,4 +25,9 @@ describe('AuthForm', () => {
     const wrapper = shallow(<AuthForm />)
     expect(wrapper.find('.container')).to.have.lengthOf(1)
   })
+
+  it(`renders a button`, () => {
+    const wrapper = shallow(<AuthForm />)
+    expect(wrapper.find('button')).to.have.lengthOf(1)
+  })
 })
