@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 /**
  * ACTION TYPES
  */
@@ -10,7 +9,7 @@ const GET_GENRES = 'GET_GENRES'
 /**
  * INITIAL STATE
  */
-const initialState= {
+const initialState = {
   genres: [],
   loading: false
 }
@@ -21,7 +20,7 @@ const initialState= {
 const gettingGenres = () => ({
   type: GETTING_GENRES
 })
-const getGenres = (data) => ({
+const getGenres = data => ({
   type: GET_GENRES,
   data
 })
@@ -40,14 +39,13 @@ export const gotAllGenres = () => async dispatch => {
   }
 }
 
-
 /**
  * REDUCER
  */
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case GETTING_GENRES:
-    return {...state, loading: true}
+      return {...state, loading: true}
     case GET_GENRES:
       return {...state, loading: false, genres: action.data}
     default:

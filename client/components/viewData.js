@@ -22,11 +22,9 @@ class ViewData extends React.Component {
     if (frequency === undefined) {
       return []
     }
-    console.log('genres: ', genres)
-    console.log('features: ', features)
     return (
       <div id ='view-data'>
-        <h1 id='heading-one'> With what data are the graphs contructed with?</h1>
+        <h1 id='heading-one'> Here is the data used to construct your graphs:</h1>
 
         <h2 id='heading-two'> Lyrics Chart: </h2>
         <ul>
@@ -46,7 +44,7 @@ class ViewData extends React.Component {
         <h2 id= 'heading-four'> Genres Chart: </h2>
         <ul>
           <h3>
-          <li>The first 20 saved Albums from your Spotify library </li>
+          <li>The first 20 saved albums from your Spotify library </li>
           </h3>
         </ul>
 

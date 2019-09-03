@@ -27,14 +27,14 @@ describe('thunk creators', () => {
   })
 
   describe('songs', () => {
-    it('eventually dispatches the GETTING_LYRICS action', async() => {
+    it('eventually dispatches the GETTING_LYRICS action', async () => {
       mockAxios.onGet('/api/tracks').replyOnce(200, undefined)
       await store.dispatch(gotAllLyrics())
       const actions = store.getActions()
       expect(actions[0].type).to.be.equal('GETTING_LYRICS')
       expect(actions[0].data).to.be.deep.equal(undefined)
     })
-    it('eventually dispatches the GET_LYRICS action', async() => {
+    it('eventually dispatches the GET_LYRICS action', async () => {
       const fakeLyrics = [{Name: 'SAY', Count: 100}]
       mockAxios.onGet('/api/tracks').replyOnce(200, fakeLyrics)
       await store.dispatch(gotAllLyrics())

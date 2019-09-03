@@ -9,7 +9,7 @@ const GET_LYRICS = 'GET_LYRICS'
 /**
  * INITIAL STATE
  */
-const initialState= {
+const initialState = {
   lyrics: [],
   loading: false
 }
@@ -21,7 +21,7 @@ const initialState= {
 const gettingLyrics = () => ({
   type: GETTING_LYRICS
 })
-const getLyrics = (data) => ({
+const getLyrics = data => ({
   type: GET_LYRICS,
   data
 })
@@ -40,11 +40,10 @@ export const gotAllLyrics = () => async dispatch => {
   }
 }
 
-
 /**
  * REDUCER
  */
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case GETTING_LYRICS:
       return {...state, loading: true}

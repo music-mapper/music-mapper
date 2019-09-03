@@ -22,11 +22,10 @@ const gettingFeatures = () => ({
   type: GETTING_FEATURES
 })
 
-const getFeatures = (data) => ({
+const getFeatures = data => ({
   type: GET_FEATURES,
   data
 })
-
 
 /**
  * THUNK
@@ -42,11 +41,10 @@ export const gotAllFeatures = () => async dispatch => {
   }
 }
 
-
 /**
  * REDUCER
  */
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case GETTING_FEATURES:
       return {...state, loading: true}

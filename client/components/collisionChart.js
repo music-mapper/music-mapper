@@ -5,7 +5,6 @@ import {connect} from 'react-redux'
 import Loading from './Loading'
 import ErrorPage from './error'
 
-
 class CollisionChart extends React.Component {
   constructor(props) {
     super(props)
@@ -31,19 +30,18 @@ class CollisionChart extends React.Component {
 
     //Takes the length of our dataset and makes an array of length hodes.
     //Then we map through each node and make its size equivalent to the count in our dataset
-    let nodes = d3
-    .range(dataset.children.length)
-    .map(function(d, i) {
-        return {r: dataset.children[i].Count * 3, name: dataset.children[i].Name, count: dataset.children[i].Count}
-      })
-
+    let nodes = d3.range(dataset.children.length).map(function(d, i) {
+      return {
+        r: dataset.children[i].Count * 3,
+        name: dataset.children[i].Name,
+        count: dataset.children[i].Count
+      }
+    })
 
     let root = nodes[0]
 
     // Set a color scale to use when coloring in the different nodes in the chart
-    // const color = d3.scaleOrdinal(d3.schemeAccent)
     const color = d3.scaleOrdinal(d3.schemeSet2)
-
 
     root.radius = 0
     root.fixed = true
@@ -57,7 +55,9 @@ class CollisionChart extends React.Component {
       .velocityDecay(0.2)
       .force('x', forceX)
       .force('y', forceY)
-      .force('collide', d3
+      .force(
+        'collide',
+        d3
           .forceCollide()
           .radius(function(d) {
             if (d === root) {
@@ -65,10 +65,10 @@ class CollisionChart extends React.Component {
             }
             return d.r + 0.5
           })
-          .iterations(5))
+          .iterations(5)
+      )
       .nodes(nodes)
       .on('tick', ticked)
-
 
     let svg = d3
       .select('#collision-chart')
@@ -88,27 +88,25 @@ class CollisionChart extends React.Component {
         return color(i)
       })
 
-      let label = svg
-        .selectAll('.mytext')
-        .data(nodes.slice(1))
-        .enter()
-        .append('text')
-        .text(d => `${d.name}`)
-        .style('text-anchor', 'middle')
-        .style('font-size', d => d.r / 3)
-        .attr('fill', 'white')
+    let label = svg
+      .selectAll('.mytext')
+      .data(nodes.slice(1))
+      .enter()
+      .append('text')
+      .text(d => `${d.name}`)
+      .style('text-anchor', 'middle')
+      .style('font-size', d => d.r / 3)
+      .attr('fill', 'white')
 
-     let label2 = svg
-       .selectAll('.mytext')
-       .data(nodes.slice(1))
-       .enter()
-       .append('text')
-       .text(d => `${d.count}`)
-       .style('text-anchor', 'middle')
-       .style('font-size', d => d.r / 5)
-       .attr('fill', 'white')
-
-      // console.log('THIS IS NODES ', nodes)
+    let label2 = svg
+      .selectAll('.mytext')
+      .data(nodes.slice(1))
+      .enter()
+      .append('text')
+      .text(d => `${d.count}`)
+      .style('text-anchor', 'middle')
+      .style('font-size', d => d.r / 5)
+      .attr('fill', 'white')
 
     function ticked(e) {
       svg
@@ -121,12 +119,20 @@ class CollisionChart extends React.Component {
         })
       //this sets the x and y coordinates of my labels
       label
-        .attr("x", function(d) {return d.x})
-        .attr('y', function(d) {return d.y})
+        .attr('x', function(d) {
+          return d.x
+        })
+        .attr('y', function(d) {
+          return d.y
+        })
 
       label2
-        .attr('x', function(d) {return d.x})
-        .attr('y', function(d) {return d.y + 15})
+        .attr('x', function(d) {
+          return d.x
+        })
+        .attr('y', function(d) {
+          return d.y + 15
+        })
     }
 
     svg.on('mousemove', function() {
@@ -139,13 +145,11 @@ class CollisionChart extends React.Component {
   render() {
     let {loading} = this.props
     if (loading) {
-      return (<Loading/>)
+      return <Loading />
+    } else if (this.state.showError === true) {
+      return <ErrorPage />
     }
-    else if (this.state.showError === true){
-      return (<ErrorPage />)
-    }
-    return (<div id='collision-chart'> </div>)
-    // return <svg ref={node => (this.node = node)} width={0} height={0} />
+    return <div id="collision-chart"> </div>
   }
 }
 

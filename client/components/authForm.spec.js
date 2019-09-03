@@ -16,11 +16,13 @@ describe('AuthForm', () => {
   })
 
   it('renders the motto in an h1', () => {
-    expect(renderAuthForm.find('h1').text()).to.be.equal('Visualize Your Taste in Music')
+    expect(renderAuthForm.find('h1').text()).to.be.equal(
+      'Visualize Your Taste in Music'
+    )
   })
 
   it(`renders a '.container'`, () => {
-    const wrapper = shallow(<AuthForm/>)
+    const wrapper = shallow(<AuthForm />)
     expect(wrapper.find('.container')).to.have.lengthOf(1)
   })
 })

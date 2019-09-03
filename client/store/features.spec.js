@@ -27,14 +27,14 @@ describe('thunk creators', () => {
   })
 
   describe('features', () => {
-    it('eventually dispatches the GETTING_FEATURES action', async() => {
+    it('eventually dispatches the GETTING_FEATURES action', async () => {
       mockAxios.onGet('/api/features').replyOnce(200, undefined)
       await store.dispatch(gotAllFeatures())
       const actions = store.getActions()
       expect(actions[0].type).to.be.equal('GETTING_FEATURES')
       expect(actions[0].data).to.be.deep.equal(undefined)
     })
-    it('eventually dispatches the GET_FEATURES action', async() => {
+    it('eventually dispatches the GET_FEATURES action', async () => {
       const fakeFeatures = [{name: 'danceability', value: 1}]
       mockAxios.onGet('/api/features').replyOnce(200, fakeFeatures)
       await store.dispatch(gotAllFeatures())

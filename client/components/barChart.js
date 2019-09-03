@@ -34,24 +34,32 @@ class BarChart extends React.Component {
       .append('g')
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
-      // Create a div element to use for hovertext
-      let div = d3.select('#bar-chart').append('div')
+    // Create a div element to use for hovertext
+    let div = d3
+      .select('#bar-chart')
+      .append('div')
       .attr('class', 'tooltip')
-      .style('opacity', 0);
+      .style('opacity', 0)
 
-      // Add the mouseover function
-      svg.on('mouseover', function(d) {
-        div.transition()
-            .duration(200)
-            .style('opacity', .9);
-        div.html('These bars represent how frequently musical artists appear within your library, based on tracks pulled from your saved albums and songs')
-            .style('left', (d3.event.pageX) + 'px')
-            .style('top', (d3.event.pageY - 28) + 'px');
-        })
+    // Add the mouseover function
+    svg
+      .on('mouseover', function(d) {
+        div
+          .transition()
+          .duration(200)
+          .style('opacity', 0.9)
+        div
+          .html(
+            'These bars represent how frequently musical artists appear within your library, based on tracks pulled from your saved albums and songs'
+          )
+          .style('left', d3.event.pageX + 'px')
+          .style('top', d3.event.pageY - 28 + 'px')
+      })
       .on('mouseout', function(d) {
-          div.transition()
-              .duration(500)
-              .style('opacity', 0);
+        div
+          .transition()
+          .duration(500)
+          .style('opacity', 0)
       })
 
     // X axis
@@ -130,12 +138,12 @@ class BarChart extends React.Component {
   }
   render() {
     let {loading} = this.props
-    if (loading){
+    if (loading) {
       return <Loading />
     }
     return (
       <div>
-        <div id="bar-chart"/>
+        <div id="bar-chart" />
       </div>
     )
   }
