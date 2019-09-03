@@ -7,7 +7,6 @@ import audioFeatures from './features'
 import genres from './genres'
 import artists from './artists'
 
-
 const reducer = combineReducers({songs, audioFeatures, genres, artists})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
@@ -19,4 +18,4 @@ export default store
 export * from './songs'
 export * from './features'
 export * from './artists'
-export * from  './genres'
+export * from './genres'

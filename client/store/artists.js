@@ -21,7 +21,7 @@ const initialState = {
 const gettingArtistFreq = () => ({
   type: GETTING_ARTIST_FREQ
 })
-const getArtistsFreq = (data) => ({
+const getArtistsFreq = data => ({
   type: GET_ARTISTS_FREQ,
   data
 })
@@ -33,21 +33,20 @@ const getArtistsFreq = (data) => ({
 export const gotArtistsFreq = () => async dispatch => {
   try {
     dispatch(gettingArtistFreq())
-    const { data } = await axios.get('/api/artistsFreq')
+    const {data} = await axios.get('/api/artistsFreq')
     dispatch(getArtistsFreq(data))
   } catch (err) {
     console.error(err)
   }
 }
 
-
 /**
  * REDUCER
  */
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case GETTING_ARTIST_FREQ:
-        return {...state, loading: true}
+      return {...state, loading: true}
     case GET_ARTISTS_FREQ:
       return {...state, loading: false, frequency: action.data}
     default:
