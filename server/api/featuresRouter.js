@@ -2,21 +2,17 @@ const router = require('express').Router()
 const rp = require('request-promise')
 module.exports = router
 
-router.get('/', async function(req, res, next) {
+router.get('/', async function (req, res, next) {
   let options = {
     url: 'https://api.spotify.com/v1/me/tracks',
-    headers: {Authorization: 'Bearer ' + req.session.access_token},
+    headers: { Authorization: 'Bearer ' + req.session.access_token },
     json: true
   }
 
   try {
     let trackInfo = []
     const response = await rp(options)
-
-    response.items.map(song => trackInfo.push({id: song.track.id}))
-
-    // console.log("TRACK INFO ", trackInfo)
-
+    response.items.map(song => trackInfo.push({ id: song.track.id }))
     let audioFeatures = []
 
     //CANNOT USE MAP IN A CALLBACK FUNCTION, MUST USE A SIMPLE FOR LOOP
@@ -25,7 +21,7 @@ router.get('/', async function(req, res, next) {
 
       let newOptions = {
         url: `https://api.spotify.com/v1/audio-features?ids=${id}`,
-        headers: {Authorization: 'Bearer ' + req.session.access_token},
+        headers: { Authorization: 'Bearer ' + req.session.access_token },
         json: true
       }
 
