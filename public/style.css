@@ -210,5 +210,8 @@ div.tooltip {
 #error-img{
 width: 500px;
 padding-left: 12em
-
+}
+.powered-by{
+  width: 25%;
+  padding-left: 2em
 }
