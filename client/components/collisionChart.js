@@ -149,7 +149,8 @@ class CollisionChart extends React.Component {
     } else if (this.state.showError === true) {
       return <ErrorPage />
     }
-    return <div id="collision-chart"> </div>
+    return <div><div id="collision-chart"></div>
+     <a href ="https://www.musixmatch.com/"><img className="powered-by" src="https://morganfeir.s3.us-east-2.amazonaws.com/badge+full.png" /></a> </div>
   }
 }
 
